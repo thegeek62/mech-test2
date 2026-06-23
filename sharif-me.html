@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sharif University — Mechanical Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#090909;--bg2:#111111;--bg3:#181818;
+  --border:#242424;--border2:#303030;
+  --text:#FFFFFF;--muted:#909090;--dimmer:#4A4A4A;
+  --accent:#E8530D;--accent2:#FF6B2B;--accent-glow:rgba(232,83,13,0.12);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:70px;border-bottom:1px solid var(--border);background:rgba(9,9,9,0.96);backdrop-filter:blur(14px)}
+.logo{display:flex;align-items:center;gap:.75rem;cursor:pointer;text-decoration:none}
+.logo-box{width:36px;height:36px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-text{display:flex;flex-direction:column;line-height:1.2}
+.logo-text em{font-style:normal;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.logo-text strong{font-size:.88rem;font-weight:600;color:var(--text)}
+.nav-links{display:flex;align-items:center;gap:.1rem;list-style:none}
+.nav-links a{display:block;padding:.5rem .95rem;color:var(--muted);font-size:.85rem;font-weight:500;cursor:pointer;transition:color .2s;user-select:none}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--accent)}
+.nav-cta{background:var(--accent) !important;color:#fff !important;padding:.55rem 1.3rem !important;font-weight:600 !important}
+.nav-cta:hover{background:var(--accent2) !important;color:#fff !important}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:70px}
+.page.active{display:block}
+
+/* ——— HOME ——— */
+.hero{display:grid;grid-template-columns:44% 56%;min-height:calc(100vh - 70px)}
+.hero-visual{position:relative;overflow:hidden;background:#060605}
+#hero-svg{position:absolute;inset:0;width:100%;height:100%}
+.hero-content{display:flex;flex-direction:column;justify-content:center;padding:4rem 4.5rem}
+.eyebrow{font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.5rem,5.5vw,5.5rem);font-weight:900;line-height:.93;letter-spacing:-.01em;margin-bottom:1.5rem}
+.hero-title .w{color:#fff}.hero-title .o{color:var(--accent)}
+.hero-desc{font-size:.975rem;color:var(--muted);line-height:1.75;max-width:410px;margin-bottom:2.5rem}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.stat{padding:1.2rem 0}
+.stat:not(:last-child){border-right:1px solid var(--border)}
+.stat:not(:first-child){padding-left:1.2rem}
+.stat-ico{color:var(--accent);margin-bottom:.45rem;opacity:.85}
+.stat-n{font-family:'Barlow Condensed',sans-serif;font-size:2.1rem;font-weight:800;line-height:1;color:#fff}
+.stat-l{font-size:.58rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--dimmer);margin-top:.3rem}
+.hero-actions{display:flex;gap:1rem;align-items:center}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.7rem;font-size:.875rem;font-weight:600;border:none;cursor:pointer;transition:all .2s;text-decoration:none;font-family:'Inter',sans-serif}
+.btn-p{background:var(--accent);color:#fff}.btn-p:hover{background:var(--accent2);transform:translateX(2px)}
+.btn-s{background:transparent;color:var(--text);border:1px solid var(--border)}.btn-s:hover{border-color:var(--border2)}
+
+/* SECTIONS */
+.sec{padding:5.5rem 2.5rem;max-width:1260px;margin:0 auto}
+.sec-full{padding:5.5rem 2.5rem;background:var(--bg2)}
+.sec-inner{max-width:1260px;margin:0 auto}
+.sec-ey{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem}
+.sec-h{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,3.25rem);font-weight:800;line-height:1.02;margin-bottom:1rem}
+.sec-d{font-size:.95rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:2.75rem}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--border);padding:1.75rem;position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
+.card::before{content:'';position:absolute;top:0;left:0;width:2.5px;height:0;background:var(--accent);transition:height .3s}
+.card:hover::before{height:100%}
+.card:hover{border-color:rgba(232,83,13,.28);transform:translateY(-2px)}
+.card-ico{width:42px;height:42px;background:var(--accent-glow);border:1px solid rgba(232,83,13,.18);display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:1.15rem}
+.card-tag{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:.2rem .55rem;margin-bottom:.7rem}
+.card-h{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.7rem;color:#fff}
+.card-d{font-size:.85rem;color:var(--muted);line-height:1.65}
+.card-list{list-style:none;margin-top:.9rem}
+.card-list li{font-size:.78rem;color:var(--dimmer);padding:.28rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem}
+.card-list li::before{content:'—';color:var(--accent);font-size:.68rem;flex-shrink:0}
+
+/* LABS PAGE */
+.pg-hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:4rem 2.5rem 3rem}
+.pg-hdr-in{max-width:1260px;margin:0 auto}
+.filter-bar{display:flex;gap:.4rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.ftab{padding:.45rem 1.15rem;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:.78rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.ftab.on,.ftab:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* FACULTY */
+.prof-card{background:var(--bg2);border:1px solid var(--border);padding:1.75rem;transition:border-color .25s}
+.prof-card:hover{border-color:rgba(232,83,13,.28)}
+.prof-av{width:58px;height:58px;border-radius:50%;background:var(--bg3);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:800;color:var(--accent);margin-bottom:.9rem}
+.prof-n{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:.2rem}
+.prof-t{font-size:.72rem;color:var(--accent);font-weight:600;letter-spacing:.04em;margin-bottom:.7rem}
+.prof-d{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:.9rem}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.tag{font-size:.62rem;font-weight:500;padding:.22rem .55rem;background:var(--bg3);border:1px solid var(--border);color:var(--muted);letter-spacing:.03em}
+
+/* COLLABORATE */
+.collab-g{display:grid;grid-template-columns:1fr 1.15fr;gap:4rem;align-items:start}
+.form-lbl{display:block;font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
+.form-inp,.form-sel,.form-ta{width:100%;background:var(--bg2);border:1px solid var(--border);padding:.72rem .95rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.875rem;outline:none;transition:border-color .2s}
+.form-inp:focus,.form-sel:focus,.form-ta:focus{border-color:var(--accent)}
+.form-ta{resize:vertical;min-height:115px}
+.form-sel{appearance:none;cursor:pointer}
+.fgrp{margin-bottom:1.15rem}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:1.4rem;position:relative;padding-bottom:1.85rem}
+.step:last-child{padding-bottom:0}
+.step::before{content:'';position:absolute;left:16px;top:36px;bottom:0;width:1px;background:var(--border)}
+.step:last-child::before{display:none}
+.step-num{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:800;color:var(--accent);width:34px;height:34px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:.05em;position:relative;z-index:1;background:var(--bg)}
+.step-h{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.22rem;margin-top:.3rem}
+.step-d{font-size:.8rem;color:var(--muted);line-height:1.6}
+.contact-box{margin-top:2.5rem;padding:1.4rem;background:var(--bg2);border:1px solid var(--border)}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem}
+.foot-in{max-width:1260px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:2rem}
+.foot-copy{font-size:.78rem;color:var(--dimmer)}
+.foot-links{display:flex;gap:1.75rem;list-style:none}
+.foot-links a{font-size:.78rem;color:var(--dimmer);text-decoration:none;transition:color .2s}
+.foot-links a:hover{color:var(--muted)}
+
+/* CTA BAND */
+.cta-band{background:var(--accent);padding:4rem 2.5rem}
+.cta-in{max-width:1260px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.cta-band h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.5rem,2.8vw,2.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:540px}
+.cta-band p{color:rgba(255,255,255,.78);font-size:.875rem;margin-top:.4rem}
+.btn-white{background:#fff;color:var(--accent);border:none;padding:.9rem 1.9rem;font-size:.875rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:opacity .2s;font-family:'Inter',sans-serif}
+.btn-white:hover{opacity:.9}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .hero-content{padding:3rem 1.5rem}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .collab-g{grid-template-columns:1fr;gap:3rem}
+  nav{padding:0 1.25rem}
+  .nav-links li:not(:last-child){display:none}
+  .sec,.sec-full{padding:3.5rem 1.5rem}
+  .pg-hdr{padding:3rem 1.5rem 2rem}
+  .foot-in{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+  <div class="logo" onclick="go('home')">
+    <div class="logo-box">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <path d="M10 1L12.9 7.6L20 8.6L14.9 13.5L16.2 20.5L10 17.3L3.8 20.5L5.1 13.5L0 8.6L7.1 7.6Z" fill="#E8530D"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <em>Sharif University of Technology</em>
+      <strong>Mechanical Engineering</strong>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a id="nl-home" class="active" onclick="go('home')">Home</a></li>
+    <li><a id="nl-labs" onclick="go('labs')">Labs</a></li>
+    <li><a id="nl-faculty" onclick="go('faculty')">Faculty</a></li>
+    <li><a id="nl-collab" onclick="go('collab')">Collaborate</a></li>
+    <li><a class="nav-cta" onclick="go('collab')">Initiate Collaboration</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div id="pg-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-visual">
+      <svg id="hero-svg" viewBox="0 0 550 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="glw" cx="50%" cy="52%" r="48%">
+            <stop offset="0%" stop-color="#E8530D" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#E8530D" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="mt1" x1="20%" y1="10%" x2="80%" y2="90%">
+            <stop offset="0%" stop-color="#3A3530"/>
+            <stop offset="55%" stop-color="#28231E"/>
+            <stop offset="100%" stop-color="#141210"/>
+          </linearGradient>
+          <linearGradient id="mt2" x1="20%" y1="10%" x2="80%" y2="90%">
+            <stop offset="0%" stop-color="#2E2A26"/>
+            <stop offset="100%" stop-color="#0E0C0A"/>
+          </linearGradient>
+        </defs>
+        <rect width="550" height="700" fill="#060504"/>
+        <!-- grid -->
+        <g stroke="#16140F" stroke-width=".5" opacity=".7">
+          <line x1="0" y1="175" x2="550" y2="175"/><line x1="0" y1="350" x2="550" y2="350"/>
+          <line x1="0" y1="525" x2="550" y2="525"/><line x1="137" y1="0" x2="137" y2="700"/>
+          <line x1="275" y1="0" x2="275" y2="700"/><line x1="413" y1="0" x2="413" y2="700"/>
+        </g>
+        <!-- glow -->
+        <ellipse cx="275" cy="360" rx="195" ry="195" fill="url(#glw)"/>
+        <!-- large gear -->
+        <g id="gl" transform="translate(275,360)">
+          <path id="glp" fill="url(#mt1)" stroke="#3A3530" stroke-width=".5"/>
+          <circle r="58" fill="#060504" stroke="#2A2520" stroke-width="1"/>
+          <circle r="46" fill="none" stroke="#2A2520" stroke-width=".5"/>
+          <circle r="28" fill="#0B0A08" stroke="#1E1C18" stroke-width=".5"/>
+          <!-- spokes -->
+          <g stroke="#2A2520" stroke-width="1">
+            <line x1="0" y1="-44" x2="0" y2="-30"/><line x1="0" y1="44" x2="0" y2="30"/>
+            <line x1="-44" y1="0" x2="-30" y2="0"/><line x1="44" y1="0" x2="30" y2="0"/>
+            <line x1="-31" y1="-31" x2="-21" y2="-21"/><line x1="31" y1="-31" x2="21" y2="-21"/>
+            <line x1="-31" y1="31" x2="-21" y2="21"/><line x1="31" y1="31" x2="21" y2="21"/>
+          </g>
+        </g>
+        <!-- medium gear top-right -->
+        <g id="gm" transform="translate(455,195)">
+          <path id="gmp" fill="url(#mt2)" stroke="#2A2520" stroke-width=".5"/>
+          <circle r="24" fill="#060504" stroke="#1E1C18" stroke-width=".5"/>
+          <circle r="12" fill="#0B0A08" stroke="#1E1C18" stroke-width=".5"/>
+          <g stroke="#2A2520" stroke-width=".8">
+            <line x1="0" y1="-22" x2="0" y2="-14"/><line x1="0" y1="22" x2="0" y2="14"/>
+            <line x1="-22" y1="0" x2="-14" y2="0"/><line x1="22" y1="0" x2="14" y2="0"/>
+          </g>
+        </g>
+        <!-- small gear bottom-left -->
+        <g id="gs" transform="translate(95,520)">
+          <path id="gsp" fill="url(#mt2)" stroke="#1E1C18" stroke-width=".5"/>
+          <circle r="15" fill="#060504" stroke="#1E1C18" stroke-width=".5"/>
+        </g>
+        <!-- tiny gear top-left -->
+        <g id="gt" transform="translate(95,175)">
+          <path id="gtp" fill="url(#mt2)" stroke="#1E1C18" stroke-width=".5"/>
+          <circle r="10" fill="#060504" stroke="#1E1C18" stroke-width=".5"/>
+        </g>
+        <!-- accent corner marks -->
+        <rect x="0" y="0" width="2.5" height="55" fill="#E8530D" opacity=".55"/>
+        <rect x="0" y="0" width="55" height="2.5" fill="#E8530D" opacity=".55"/>
+        <rect x="527.5" y="672.5" width="2.5" height="27.5" fill="#E8530D" opacity=".3"/>
+        <rect x="523" y="697.5" width="27" height="2.5" fill="#E8530D" opacity=".3"/>
+        <!-- orange accent ring segment -->
+        <circle cx="275" cy="360" r="142" fill="none" stroke="#E8530D" stroke-width=".6" stroke-opacity=".18" stroke-dasharray="6 6"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <p class="eyebrow">Sharif University of Technology</p>
+      <h1 class="hero-title">
+        <span class="w">Mechanical<br></span>
+        <span class="o">Engineering</span>
+      </h1>
+      <p class="hero-desc">Where academic precision meets industrial power. We transform research into impact — partnering with industry to solve the most complex engineering challenges.</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+          <div class="stat-n" data-to="34">0</div>
+          <div class="stat-l">Industrial Labs</div>
+        </div>
+        <div class="stat">
+          <div class="stat-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M9 21h6M12 15v6"/></svg></div>
+          <div class="stat-n" data-to="120" data-sfx="+">0</div>
+          <div class="stat-l">Patents Filed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="stat-n" data-to="85">0</div>
+          <div class="stat-l">Industry Partners</div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button class="btn btn-p" onclick="go('collab')">Initiate Collaboration <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        <button class="btn btn-s" onclick="go('labs')">Explore Labs</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Offer -->
+  <div class="sec-full">
+    <div class="sec-inner">
+      <p class="sec-ey">What We Offer</p>
+      <h2 class="sec-h">Engineering at the Frontier</h2>
+      <p class="sec-d">Our department bridges the gap between fundamental research and real-world industrial application across every domain of mechanical engineering.</p>
+      <div class="g3">
+        <div class="card">
+          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12h6M16 12h6M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3 class="card-h">Industrial Research</h3>
+          <p class="card-d">Contract research programs with direct industry integration. Our labs tackle real engineering problems with measurable, deployable outcomes.</p>
+        </div>
+        <div class="card">
+          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <h3 class="card-h">Technology Transfer</h3>
+          <p class="card-d">120+ patents available for licensing. Our IP portfolio spans robotics, advanced materials, combustion systems, and precision manufacturing.</p>
+        </div>
+        <div class="card">
+          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3 class="card-h">Expert Consulting</h3>
+          <p class="card-d">40+ faculty members offering specialized consulting across all branches of mechanical engineering, from CFD analysis to structural integrity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Labs -->
+  <section class="sec">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;gap:1rem;flex-wrap:wrap">
+      <div>
+        <p class="sec-ey">Research Infrastructure</p>
+        <h2 class="sec-h" style="margin-bottom:0">Featured Labs</h2>
+      </div>
+      <button class="btn btn-s" onclick="go('labs')">View All Labs →</button>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <span class="card-tag">Industrial</span>
+        <h3 class="card-h">Fluid Mechanics & Hydraulics</h3>
+        <p class="card-d">Advanced flow characterization for aerodynamic and hydrodynamic analysis. Equipped with PIV systems, subsonic wind tunnels, and high-performance CFD clusters.</p>
+        <ul class="card-list"><li>Particle Image Velocimetry (PIV)</li><li>Subsonic Wind Tunnel (10–80 m/s)</li><li>256-Core CFD Cluster</li><li>Cavitation Test Rig</li></ul>
+      </div>
+      <div class="card">
+        <span class="card-tag">Industrial</span>
+        <h3 class="card-h">Robotics & Automation</h3>
+        <p class="card-d">Full-scale robotics development covering manipulation, autonomous navigation, and human-robot collaboration for industrial and research applications.</p>
+        <ul class="card-list"><li>6-DOF Industrial Robot Arms</li><li>ROS2 Development Platform</li><li>Autonomous Vehicle Test Track</li><li>Force/Torque Sensor Suite</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="cta-in">
+      <div>
+        <h2>Ready to collaborate with Iran's top engineering faculty?</h2>
+        <p>Join 85+ industry partners already working with our department.</p>
+      </div>
+      <button class="btn-white" onclick="go('collab')">Get In Touch →</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-in">
+      <p class="foot-copy">© 2025 Sharif University of Technology — Mechanical Engineering Department</p>
+      <ul class="foot-links"><li><a href="#">Sharif University</a></li><li><a href="#">Academic Portal</a></li><li><a href="#">Publications</a></li></ul>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════ LABS ═══════════ -->
+<div id="pg-labs" class="page">
+  <div class="pg-hdr">
+    <div class="pg-hdr-in">
+      <p class="sec-ey">Research Infrastructure</p>
+      <h1 class="sec-h" style="font-size:clamp(2.5rem,4.5vw,4rem);margin-bottom:.6rem">Our Laboratories</h1>
+      <p style="color:var(--muted);font-size:.95rem;max-width:520px">State-of-the-art facilities for industrial research and academic training. Every lab is equipped with industry-grade instruments and staffed by specialized researchers.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="filter-bar">
+      <button class="ftab on" onclick="fLabs('all',this)">All Labs</button>
+      <button class="ftab" onclick="fLabs('industrial',this)">Industrial</button>
+      <button class="ftab" onclick="fLabs('educational',this)">Educational</button>
+    </div>
+    <div id="labs-grid" class="g3"></div>
+  </section>
+  <footer><div class="foot-in"><p class="foot-copy">© 2025 Sharif University of Technology — Mechanical Engineering Department</p><ul class="foot-links"><li><a href="#">Sharif University</a></li></ul></div></footer>
+</div>
+
+<!-- ═══════════ FACULTY ═══════════ -->
+<div id="pg-faculty" class="page">
+  <div class="pg-hdr">
+    <div class="pg-hdr-in">
+      <p class="sec-ey">Academic Excellence</p>
+      <h1 class="sec-h" style="font-size:clamp(2.5rem,4.5vw,4rem);margin-bottom:.6rem">Our Faculty</h1>
+      <p style="color:var(--muted);font-size:.95rem;max-width:520px">40+ expert professors with specialized research skills available for industry partnership, consulting, and joint projects.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="filter-bar">
+      <button class="ftab on" onclick="fFaculty('all',this)">All Fields</button>
+      <button class="ftab" onclick="fFaculty('fluids',this)">Fluids & Thermal</button>
+      <button class="ftab" onclick="fFaculty('robotics',this)">Robotics & Control</button>
+      <button class="ftab" onclick="fFaculty('materials',this)">Materials & Mfg.</button>
+      <button class="ftab" onclick="fFaculty('structures',this)">Structures & Design</button>
+    </div>
+    <div id="faculty-grid" class="g4"></div>
+  </section>
+  <footer><div class="foot-in"><p class="foot-copy">© 2025 Sharif University of Technology — Mechanical Engineering Department</p><ul class="foot-links"><li><a href="#">Sharif University</a></li></ul></div></footer>
+</div>
+
+<!-- ═══════════ COLLABORATE ═══════════ -->
+<div id="pg-collab" class="page">
+  <div class="pg-hdr">
+    <div class="pg-hdr-in">
+      <p class="sec-ey">Partnership</p>
+      <h1 class="sec-h" style="font-size:clamp(2.5rem,4.5vw,4rem);margin-bottom:.6rem">Initiate Collaboration</h1>
+      <p style="color:var(--muted);font-size:.95rem;max-width:520px">Tell us about your engineering challenge and we'll connect you with the right faculty and lab resources within 48 hours.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <!-- Partnership types -->
+    <div class="g4" style="margin-bottom:4rem">
+      <div class="card" style="text-align:center">
+        <div class="card-ico" style="margin:0 auto 1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3 class="card-h">Joint Research</h3>
+        <p class="card-d" style="font-size:.8rem">Co-develop solutions with our researchers embedded in your team and facilities.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="card-ico" style="margin:0 auto 1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div>
+        <h3 class="card-h">Contract Research</h3>
+        <p class="card-d" style="font-size:.8rem">Commission targeted studies with defined deliverables and clear timelines.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="card-ico" style="margin:0 auto 1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3 class="card-h">Tech Licensing</h3>
+        <p class="card-d" style="font-size:.8rem">License proven technologies from our patent portfolio for commercial deployment.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="card-ico" style="margin:0 auto 1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 class="card-h">Talent Pipeline</h3>
+        <p class="card-d" style="font-size:.8rem">Recruit top MSc and PhD graduates trained in your specific engineering domain.</p>
+      </div>
+    </div>
+
+    <div class="collab-g">
+      <!-- Form -->
+      <div>
+        <h2 class="sec-h" style="font-size:1.7rem;margin-bottom:1.75rem">Send a Request</h2>
+        <div class="fgrp"><label class="form-lbl">Full Name</label><input class="form-inp" type="text" placeholder="Your full name"></div>
+        <div class="fgrp"><label class="form-lbl">Company / Organization</label><input class="form-inp" type="text" placeholder="Company or institution name"></div>
+        <div class="fgrp"><label class="form-lbl">Email Address</label><input class="form-inp" type="email" placeholder="you@company.com"></div>
+        <div class="fgrp">
+          <label class="form-lbl">Collaboration Type</label>
+          <select class="form-sel form-inp"><option value="">Select type…</option><option>Joint Research</option><option>Contract Research</option><option>Technology Licensing</option><option>Talent Pipeline</option><option>Expert Consulting</option></select>
+        </div>
+        <div class="fgrp">
+          <label class="form-lbl">Field of Interest</label>
+          <select class="form-sel form-inp"><option value="">Select field…</option><option>Fluid Mechanics & CFD</option><option>Robotics & Automation</option><option>Materials & Manufacturing</option><option>Thermodynamics & Heat Transfer</option><option>Structural Analysis & FEA</option><option>Combustion & Energy</option><option>Composites</option><option>Other</option></select>
+        </div>
+        <div class="fgrp"><label class="form-lbl">Project Description</label><textarea class="form-ta" placeholder="Briefly describe your engineering challenge or collaboration idea…"></textarea></div>
+        <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:.4rem" onclick="sendForm()">Submit Request →</button>
+        <p id="ok" style="display:none;color:#4BB86A;font-size:.82rem;margin-top:.9rem;text-align:center">✓ Request submitted. We will be in touch within 2 business days.</p>
+      </div>
+
+      <!-- How it works -->
+      <div>
+        <h2 class="sec-h" style="font-size:1.7rem;margin-bottom:1.75rem">How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div><h3 class="step-h">Submit Your Request</h3><p class="step-d">Fill out the contact form describing your engineering challenge or collaboration idea. Attach any relevant technical documents.</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div><h3 class="step-h">Expert Matching</h3><p class="step-d">Our research office reviews your request and matches you with the most relevant faculty and lab capabilities within 48 hours.</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div><h3 class="step-h">Discovery Meeting</h3><p class="step-d">A technical scoping session with matched faculty to assess feasibility, timelines, and resources required for your project.</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div><h3 class="step-h">Agreement & Kickoff</h3><p class="step-d">Finalize terms through the university's technology transfer office and launch the collaboration with a defined project plan.</p></div>
+          </div>
+        </div>
+
+        <div class="contact-box">
+          <p style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.45rem">Direct Contact</p>
+          <p style="font-size:.85rem;color:var(--muted)">Research Collaboration Office</p>
+          <p style="font-size:.875rem;color:var(--text);margin-top:.2rem">me-research@sharif.edu</p>
+          <p style="font-size:.85rem;color:var(--muted);margin-top:.15rem">+98 21 6616 5500</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="foot-in"><p class="foot-copy">© 2025 Sharif University of Technology — Mechanical Engineering Department</p><ul class="foot-links"><li><a href="#">Sharif University</a></li><li><a href="#">Academic Portal</a></li></ul></div></footer>
+</div>
+
+<script>
+// ═══ DATA ═══
+const LABS=[
+  {t:'industrial',n:'Fluid Mechanics & Hydraulics',d:'Advanced flow characterization for aerodynamic and hydrodynamic analysis at engineering scale. Industry-grade testing from laminar to fully turbulent regimes.',eq:['Particle Image Velocimetry (PIV)','Subsonic Wind Tunnel (10–80 m/s)','256-Core CFD Cluster','Cavitation & Pump Test Rig']},
+  {t:'industrial',n:'Thermodynamics & Heat Transfer',d:'Thermal analysis covering conduction, convection, radiation, and phase-change processes. Precision measurement at temperatures from cryogenic to 1500°C.',eq:['Infrared Thermography System','Heat Exchanger Test Rigs','Phase-Change Apparatus','ANSYS Fluent + Thermal Suite']},
+  {t:'industrial',n:'Robotics & Automation',d:'Full-scale robotics research covering manipulation, autonomous navigation, and human-robot collaboration for industrial deployment.',eq:['6-DOF Industrial Robot Arms','ROS2 Development Platform','Autonomous Vehicle Test Track','Force/Torque Sensor Suite']},
+  {t:'industrial',n:'Materials Testing & Failure Analysis',d:'Comprehensive mechanical property testing and failure diagnosis for metals, polymers, ceramics, and composite materials.',eq:['Universal Testing Machine (500 kN)','SEM/EDX System','Fatigue Testing Rig (R=-1)','Charpy/Izod Impact Tester']},
+  {t:'industrial',n:'Internal Combustion Engines',d:'Engine development and emissions analysis for automotive and industrial power systems. Steady-state and transient testing capabilities.',eq:['Engine Dynamometer (250 kW)','Emissions Analyzer (Euro 6 grade)','In-Cylinder Combustion Analyzer','Direct-Injection Fuel Test Bench']},
+  {t:'industrial',n:'Advanced Manufacturing',d:'Precision manufacturing and process development for complex part geometries, hybrid materials, and near-net-shape production.',eq:['5-Axis CNC Machining Center','Wire & Sinker EDM','Metal AM — DMLS / SLM','CMM & Optical Metrology']},
+  {t:'industrial',n:'Composites & Advanced Materials',d:'Design and manufacture of fiber-reinforced composites for aerospace, automotive, and structural applications with full NDT capability.',eq:['Autoclave (Ø2 m, 12 bar)','Resin Transfer Molding (RTM)','Phased-Array Ultrasonic NDT','DMA & TGA Analyzers']},
+  {t:'industrial',n:'Vibrations & Dynamic Systems',d:'Structural dynamics analysis, modal testing, and active vibration control for rotating machinery and civil structures.',eq:['Multi-Channel DAQ (64 ch)','Electrodynamic Shaker (5 kN)','LMS Test.Lab Modal Software','Semi-Anechoic Chamber']},
+  {t:'educational',n:'CAD/CAM & Digital Fabrication',d:'Design-to-manufacturing pipeline training using industry-standard software and digital fabrication equipment.',eq:['CATIA V5 / SolidWorks','FDM, SLA & PolyJet Printers','CNC Router & Laser Cutter','Reverse Engineering Scanner']},
+  {t:'educational',n:'Measurement & Instrumentation',d:'Fundamentals of engineering measurement, sensor calibration, signal conditioning, and data acquisition systems.',eq:['Multi-Channel DAQ Systems','Strain Gauge Bridges & Wheatstone','Calibration Reference Standards','LabVIEW & NI Hardware']},
+  {t:'educational',n:'Mechatronics & Control',d:'Integration of mechanical, electrical, and software systems for intelligent machine and automation design.',eq:['Siemens PLC Systems','Arduino / Raspberry Pi Kits','Servo Drive Test Benches','MATLAB/Simulink Real-Time']},
+  {t:'educational',n:'Engineering Simulation Center',d:'High-performance computing cluster for FEA, CFD, multibody dynamics, and topology optimization.',eq:['ANSYS Mechanical & Fluent','Abaqus / CAE','OpenFOAM HPC Nodes (128 cores)','Adams Multibody Dynamics']}
+];
+
+const FACULTY=[
+  {n:'Prof. Ali Ahmadi',i:'AA',t:'Professor — Fluid Mechanics',c:'fluids',d:'Leading expert in turbulent flow modeling and CFD-based design optimization for industrial aerodynamics and internal flows.',tags:['CFD','Turbulence Modeling','Aerodynamics','Flow Control']},
+  {n:'Prof. Fatemeh Hosseini',i:'FH',t:'Associate Professor — Heat Transfer',c:'fluids',d:'Research in enhanced heat transfer surfaces, phase-change cooling, and thermal management for power electronics.',tags:['Heat Exchangers','Phase Change','Thermal Management','Nanofluids']},
+  {n:'Prof. Hossein Mohammadi',i:'HM',t:'Professor — Combustion & Energy',c:'fluids',d:'Combustion instability, alternative fuel combustion, and high-efficiency industrial burner design for power generation.',tags:['Combustion','Alternative Fuels','IC Engines','Energy Systems']},
+  {n:'Prof. Sara Karimi',i:'SK',t:'Associate Professor — Robotics',c:'robotics',d:'Adaptive robotic manipulation, human-robot collaboration, and autonomous systems for unstructured industrial environments.',tags:['Robotics','Autonomous Systems','HRI','Machine Learning']},
+  {n:'Prof. Reza Tehrani',i:'RT',t:'Professor — Control Engineering',c:'robotics',d:'Control system design for complex multi-body systems, vehicle dynamics, and precision manufacturing equipment.',tags:['Control Systems','Vehicle Dynamics','Mechatronics','Precision Control']},
+  {n:'Prof. Amir Shahriari',i:'AS',t:'Associate Professor — Mechatronics',c:'robotics',d:'Intelligent mechatronic systems for industrial automation, smart manufacturing, and embedded control applications.',tags:['Mechatronics','Industrial Automation','Smart Mfg.','IoT']},
+  {n:'Prof. Mohammad Rezaei',i:'MR',t:'Professor — Materials Science',c:'materials',d:'Metallic alloy development, failure analysis and fractography, and surface engineering for high-temperature and corrosive environments.',tags:['Alloy Development','Failure Analysis','Surface Engineering','Fatigue']},
+  {n:'Prof. Maryam Sadeghi',i:'MS',t:'Associate Professor — Composites',c:'materials',d:'Fiber-reinforced polymer composites for aerospace and lightweight structural applications, including damage tolerance and manufacturing optimization.',tags:['CFRP / GFRP','Aerospace Materials','Damage Tolerance','Process Optimization']},
+  {n:'Prof. Kaveh Nasseri',i:'KN',t:'Professor — Manufacturing Eng.',c:'materials',d:'Advanced machining processes, precision micro-manufacturing, and additive manufacturing process development for industrial applications.',tags:['CNC Machining','Metal Additive Mfg.','Process Optimization','Quality Control']},
+  {n:'Prof. Leila Nazari',i:'LN',t:'Professor — Structural Analysis',c:'structures',d:'Structural integrity assessment, finite element analysis, and reliability engineering for pressure vessels, pipelines, and critical infrastructure.',tags:['FEA / FEM','Structural Integrity','Reliability Eng.','Fracture Mechanics']},
+  {n:'Prof. Babak Moradi',i:'BM',t:'Associate Professor — Design Eng.',c:'structures',d:'Topology optimization, design for manufacturing, and multi-objective structural optimization for lightweight, high-performance components.',tags:['Topology Optimization','Design for Mfg.','Lightweight Design','Multi-obj. Optimization']},
+  {n:'Prof. Neda Rahmani',i:'NR',t:'Associate Professor — Dynamics',c:'structures',d:'Vibration analysis, rotating machinery condition monitoring, and active noise and vibration control systems for industrial plants.',tags:['Vibration Control','Rotating Machinery','NVH','Modal Analysis']}
+];
+
+// ═══ NAVIGATION ═══
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pg-'+id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const nl=document.getElementById('nl-'+id);if(nl)nl.classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='home')countUp();
+  if(id==='labs')renderLabs('all');
+  if(id==='faculty')renderFaculty('all');
+}
+
+// ═══ LABS ═══
+function renderLabs(filter){
+  const data=filter==='all'?LABS:LABS.filter(l=>l.t===filter);
+  document.getElementById('labs-grid').innerHTML=data.map(l=>`
+    <div class="card">
+      <span class="card-tag">${l.t==='industrial'?'Industrial':'Educational'}</span>
+      <h3 class="card-h">${l.n}</h3>
+      <p class="card-d">${l.d}</p>
+      <ul class="card-list">${l.eq.map(e=>`<li>${e}</li>`).join('')}</ul>
+    </div>`).join('');
+}
+function fLabs(f,btn){
+  document.querySelectorAll('#pg-labs .ftab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');renderLabs(f);
+}
+
+// ═══ FACULTY ═══
+function renderFaculty(filter){
+  const data=filter==='all'?FACULTY:FACULTY.filter(f=>f.c===filter);
+  document.getElementById('faculty-grid').innerHTML=data.map(p=>`
+    <div class="prof-card">
+      <div class="prof-av">${p.i}</div>
+      <h3 class="prof-n">${p.n}</h3>
+      <p class="prof-t">${p.t}</p>
+      <p class="prof-d">${p.d}</p>
+      <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+function fFaculty(f,btn){
+  document.querySelectorAll('#pg-faculty .ftab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');renderFaculty(f);
+}
+
+// ═══ COUNTER ═══
+function countUp(){
+  document.querySelectorAll('[data-to]').forEach(el=>{
+    const target=+el.dataset.to,sfx=el.dataset.sfx||'';
+    let n=0;const step=Math.ceil(target/40);
+    const t=setInterval(()=>{n=Math.min(n+step,target);el.textContent=n+sfx;if(n>=target)clearInterval(t);},28);
+  });
+}
+
+// ═══ FORM ═══
+function sendForm(){document.getElementById('ok').style.display='block';}
+
+// ═══ GEAR GENERATOR ═══
+function gear(teeth,rO,rI,offset=0){
+  const pts=[],a=2*Math.PI/teeth;
+  for(let i=0;i<teeth;i++){
+    const b=i*a+offset;
+    pts.push(
+      `L${rI*Math.cos(b).toFixed(2)},${rI*Math.sin(b).toFixed(2)}`,
+      `L${rO*Math.cos(b+a*.16).toFixed(2)},${rO*Math.sin(b+a*.16).toFixed(2)}`,
+      `L${rO*Math.cos(b+a*.43).toFixed(2)},${rO*Math.sin(b+a*.43).toFixed(2)}`,
+      `L${rI*Math.cos(b+a*.59).toFixed(2)},${rI*Math.sin(b+a*.59).toFixed(2)}`
+    );
+  }
+  pts[0]=pts[0].replace('L','M');
+  return pts.join(' ')+'Z';
+}
+
+// Set gear paths
+document.getElementById('glp').setAttribute('d',gear(18,148,120));
+document.getElementById('gmp').setAttribute('d',gear(10,60,48));
+document.getElementById('gsp').setAttribute('d',gear(7,37,29));
+document.getElementById('gtp').setAttribute('d',gear(6,25,20));
+
+// Animate gears — ratios by tooth count
+let ang=0;
+(function spin(){
+  ang+=.0025;
+  const r2d=180/Math.PI;
+  document.getElementById('gl').setAttribute('transform',`translate(275,360) rotate(${ang*r2d})`);
+  document.getElementById('gm').setAttribute('transform',`translate(455,195) rotate(${-ang*(18/10)*r2d})`);
+  document.getElementById('gs').setAttribute('transform',`translate(95,520) rotate(${ang*(18/7)*r2d})`);
+  document.getElementById('gt').setAttribute('transform',`translate(95,175) rotate(${-ang*(18/6)*r2d})`);
+  requestAnimationFrame(spin);
+})();
+
+// ═══ INIT ═══
+renderLabs('all');
+renderFaculty('all');
+countUp();
+</script>
+</body>
+</html>

@@ -1,612 +1,1077 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sharif University — Mechanical Engineering</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#090909;--bg2:#111111;--bg3:#181818;
-  --border:#242424;--border2:#303030;
-  --text:#FFFFFF;--muted:#909090;--dimmer:#4A4A4A;
-  --accent:#E8530D;--accent2:#FF6B2B;--accent-glow:rgba(232,83,13,0.12);
-}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دانشگاه صنعتی شریف — دانشکده مهندسی مکانیک</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:70px;border-bottom:1px solid var(--border);background:rgba(9,9,9,0.96);backdrop-filter:blur(14px)}
-.logo{display:flex;align-items:center;gap:.75rem;cursor:pointer;text-decoration:none}
-.logo-box{width:36px;height:36px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.logo-text{display:flex;flex-direction:column;line-height:1.2}
-.logo-text em{font-style:normal;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.logo-text strong{font-size:.88rem;font-weight:600;color:var(--text)}
-.nav-links{display:flex;align-items:center;gap:.1rem;list-style:none}
-.nav-links a{display:block;padding:.5rem .95rem;color:var(--muted);font-size:.85rem;font-weight:500;cursor:pointer;transition:color .2s;user-select:none}
-.nav-links a:hover{color:var(--text)}
-.nav-links a.active{color:var(--accent)}
-.nav-cta{background:var(--accent) !important;color:#fff !important;padding:.55rem 1.3rem !important;font-weight:600 !important}
-.nav-cta:hover{background:var(--accent2) !important;color:#fff !important}
+  <style>
+    :root {
+      --bg: #0D0D0F;
+      --bg2: #141416;
+      --bg3: #1B1B1E;
+      --text: #F3F4F6;
+      --muted: #A0A0A0;
+      --accent: #E8530D;
+      --radius: .5rem;
+      --shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Vazirmatn', 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 1rem;
+      direction: rtl;
+      text-align: right;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    button { background: none; border: none; color: var(--text); cursor: pointer; }
+    h1, h2, h3 { font-family: 'Barlow Condensed', 'Vazirmatn', sans-serif; font-weight: 700; line-height: 1.4; }
+    img { max-width: 100%; height: auto; }
 
-/* PAGES */
-.page{display:none;min-height:100vh;padding-top:70px}
-.page.active{display:block}
+    /* ═══ Layout ═══ */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .page { display: none; padding-top: 5rem; min-height: calc(100vh - 5rem); }
+    .page.active { display: block; }
+    .sec { padding: 4rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+    .sec-full { background-color: var(--bg2); padding: 4rem 0; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-/* ——— HOME ——— */
-.hero{display:grid;grid-template-columns:44% 56%;min-height:calc(100vh - 70px)}
-.hero-visual{position:relative;overflow:hidden;background:#060605}
-#hero-svg{position:absolute;inset:0;width:100%;height:100%}
-.hero-content{display:flex;flex-direction:column;justify-content:center;padding:4rem 4.5rem}
-.eyebrow{font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
-.hero-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.5rem,5.5vw,5.5rem);font-weight:900;line-height:.93;letter-spacing:-.01em;margin-bottom:1.5rem}
-.hero-title .w{color:#fff}.hero-title .o{color:var(--accent)}
-.hero-desc{font-size:.975rem;color:var(--muted);line-height:1.75;max-width:410px;margin-bottom:2.5rem}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2.5rem}
-.stat{padding:1.2rem 0}
-.stat:not(:last-child){border-right:1px solid var(--border)}
-.stat:not(:first-child){padding-left:1.2rem}
-.stat-ico{color:var(--accent);margin-bottom:.45rem;opacity:.85}
-.stat-n{font-family:'Barlow Condensed',sans-serif;font-size:2.1rem;font-weight:800;line-height:1;color:#fff}
-.stat-l{font-size:.58rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--dimmer);margin-top:.3rem}
-.hero-actions{display:flex;gap:1rem;align-items:center}
+    /* ═══ Headings ═══ */
+    .eyebrow, .sec-ey {
+      font-size: .85rem; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem;
+    }
+    .sec-h { font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 1.5rem; color: var(--text); }
+    .sec-d { font-size: 1.05rem; color: var(--muted); max-width: 700px; line-height: 1.8; }
 
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.7rem;font-size:.875rem;font-weight:600;border:none;cursor:pointer;transition:all .2s;text-decoration:none;font-family:'Inter',sans-serif}
-.btn-p{background:var(--accent);color:#fff}.btn-p:hover{background:var(--accent2);transform:translateX(2px)}
-.btn-s{background:transparent;color:var(--text);border:1px solid var(--border)}.btn-s:hover{border-color:var(--border2)}
+    /* ═══ Grids ═══ */
+    .g2, .g3, .g4 { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 2.5rem; }
+    .g4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 
-/* SECTIONS */
-.sec{padding:5.5rem 2.5rem;max-width:1260px;margin:0 auto}
-.sec-full{padding:5.5rem 2.5rem;background:var(--bg2)}
-.sec-inner{max-width:1260px;margin:0 auto}
-.sec-ey{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem}
-.sec-h{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,3.25rem);font-weight:800;line-height:1.02;margin-bottom:1rem}
-.sec-d{font-size:.95rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:2.75rem}
+    /* ═══ Cards ═══ */
+    .card {
+      background-color: var(--bg3); border-radius: var(--radius); padding: 1.75rem;
+      border: 1px solid #28282D; display: flex; flex-direction: column;
+    }
+    .card-ico {
+      color: var(--accent); width: 45px; height: 45px; display: flex; align-items: center;
+      justify-content: center; border-radius: var(--radius); background-color: rgba(232,83,13,.1); margin-bottom: 1rem;
+    }
+    .card-h { font-size: 1.25rem; margin-bottom: .75rem; color: var(--text); }
+    .card-d { font-size: .9rem; color: var(--muted); line-height: 1.7; }
+    .card-tag {
+      font-size: .75rem; font-weight: 600; color: var(--accent); background-color: rgba(232,83,13,.15);
+      padding: .2rem .6rem; border-radius: .25rem; display: inline-block; margin-bottom: .8rem;
+    }
+    .card-list {
+      list-style: none; padding-right: 0; margin-top: 1rem; font-size: .85rem; color: var(--muted); flex-grow: 1;
+    }
+    .card-list li { margin-bottom: .4rem; position: relative; padding-right: 1.2rem; }
+    .card-list li::before { content: '—'; color: var(--accent); position: absolute; right: 0; }
 
-/* GRIDS */
-.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    /* ═══ Buttons ═══ */
+    .btn { display: inline-flex; align-items: center; gap: .6rem; padding: .8rem 1.4rem; border-radius: var(--radius); font-weight: 600; font-size: .9rem; transition: all .2s ease; }
+    .btn-p { background-color: var(--accent); color: var(--text); }
+    .btn-p:hover { background-color: #F8631D; }
+    .btn-s { background-color: transparent; border: 1px solid #333; color: var(--muted); }
+    .btn-s:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-white { background-color: var(--text); color: var(--bg); padding: .8rem 1.5rem; border-radius: var(--radius); font-weight: 600; font-size: .9rem; transition: all .2s ease; display: inline-flex; align-items: center; gap: .6rem; }
+    .btn-white:hover { background-color: #E0E0E0; }
+    .btn-danger { background-color: #c0392b; color: var(--text); }
+    .btn-danger:hover { background-color: #e74c3c; }
+    .btn-sm { padding: .4rem .8rem; font-size: .8rem; }
 
-/* CARDS */
-.card{background:var(--bg2);border:1px solid var(--border);padding:1.75rem;position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
-.card::before{content:'';position:absolute;top:0;left:0;width:2.5px;height:0;background:var(--accent);transition:height .3s}
-.card:hover::before{height:100%}
-.card:hover{border-color:rgba(232,83,13,.28);transform:translateY(-2px)}
-.card-ico{width:42px;height:42px;background:var(--accent-glow);border:1px solid rgba(232,83,13,.18);display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:1.15rem}
-.card-tag{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:.2rem .55rem;margin-bottom:.7rem}
-.card-h{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.7rem;color:#fff}
-.card-d{font-size:.85rem;color:var(--muted);line-height:1.65}
-.card-list{list-style:none;margin-top:.9rem}
-.card-list li{font-size:.78rem;color:var(--dimmer);padding:.28rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem}
-.card-list li::before{content:'—';color:var(--accent);font-size:.68rem;flex-shrink:0}
+    /* ═══ Navigation ═══ */
+    nav {
+      position: fixed; top: 0; right: 0; width: 100%; background-color: rgba(13,13,15,.9);
+      backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #28282D;
+    }
+    .nav-in { max-width: 1200px; margin: 0 auto; padding: .8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-brand { display: flex; align-items: center; gap: .8rem; }
+    .nav-logo {
+      width: 40px; height: 40px; background-color: var(--accent); border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.2rem; color: var(--bg);
+    }
+    .nav-text p:first-child { font-size: .7rem; color: var(--muted); }
+    .nav-text p:last-child { font-family: 'Barlow Condensed', 'Vazirmatn', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--text); line-height: 1; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: var(--muted); font-size: .85rem; font-weight: 500; transition: color .2s ease; position: relative; padding: .2rem 0; }
+    .nav-links a::after { content: ''; position: absolute; right: 0; bottom: 0; width: 0; height: 2px; background-color: var(--accent); transition: width .2s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active::after { width: 100%; }
+    .nav-cta button { background-color: var(--accent); color: var(--text); padding: .5rem 1rem; border-radius: var(--radius); font-weight: 600; font-size: .85rem; }
+    .nav-cta button:hover { background-color: #F8631D; }
+    .mobile-nav-toggle { display: none; font-size: 1.8rem; color: var(--text); cursor: pointer; }
 
-/* LABS PAGE */
-.pg-hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:4rem 2.5rem 3rem}
-.pg-hdr-in{max-width:1260px;margin:0 auto}
-.filter-bar{display:flex;gap:.4rem;margin-bottom:2.5rem;flex-wrap:wrap}
-.ftab{padding:.45rem 1.15rem;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:.78rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
-.ftab.on,.ftab:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+    /* ═══ Hero ═══ */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3rem; padding: 6rem 1.5rem 4rem; max-width: 1200px; margin: 0 auto; }
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+    .hero-content { text-align: right; }
+    .hero-title { font-size: clamp(3.5rem, 6vw, 5.5rem); line-height: 1; margin-bottom: 1.5rem; }
+    .hero-title .w { color: var(--text); }
+    .hero-title .o { color: var(--accent); }
+    .hero-desc { font-size: 1.15rem; color: var(--muted); margin-bottom: 2rem; max-width: 550px; }
+    .hero-stats { display: flex; gap: 2.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .stat { display: flex; flex-direction: column; align-items: flex-end; color: var(--muted); }
+    .stat-ico { color: var(--accent); margin-bottom: .5rem; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; }
+    .stat-n { font-family: 'Barlow Condensed', 'Vazirmatn', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--text); line-height: 1; }
+    .stat-l { font-size: .8rem; font-weight: 500; color: var(--muted); margin-top: .2rem; }
+    .hero-actions .btn { margin-left: 1rem; }
 
-/* FACULTY */
-.prof-card{background:var(--bg2);border:1px solid var(--border);padding:1.75rem;transition:border-color .25s}
-.prof-card:hover{border-color:rgba(232,83,13,.28)}
-.prof-av{width:58px;height:58px;border-radius:50%;background:var(--bg3);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:800;color:var(--accent);margin-bottom:.9rem}
-.prof-n{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:.2rem}
-.prof-t{font-size:.72rem;color:var(--accent);font-weight:600;letter-spacing:.04em;margin-bottom:.7rem}
-.prof-d{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:.9rem}
-.tags{display:flex;flex-wrap:wrap;gap:.35rem}
-.tag{font-size:.62rem;font-weight:500;padding:.22rem .55rem;background:var(--bg3);border:1px solid var(--border);color:var(--muted);letter-spacing:.03em}
+    /* ═══ CTA Band ═══ */
+    .cta-band { background-color: var(--accent); padding: 3rem 1.5rem; text-align: center; }
+    .cta-in { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .cta-in h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--bg); margin-bottom: .5rem; }
+    .cta-in p { color: rgba(13,13,15,.8); font-size: 1rem; }
 
-/* COLLABORATE */
-.collab-g{display:grid;grid-template-columns:1fr 1.15fr;gap:4rem;align-items:start}
-.form-lbl{display:block;font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
-.form-inp,.form-sel,.form-ta{width:100%;background:var(--bg2);border:1px solid var(--border);padding:.72rem .95rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.875rem;outline:none;transition:border-color .2s}
-.form-inp:focus,.form-sel:focus,.form-ta:focus{border-color:var(--accent)}
-.form-ta{resize:vertical;min-height:115px}
-.form-sel{appearance:none;cursor:pointer}
-.fgrp{margin-bottom:1.15rem}
-.steps{display:flex;flex-direction:column}
-.step{display:flex;gap:1.4rem;position:relative;padding-bottom:1.85rem}
-.step:last-child{padding-bottom:0}
-.step::before{content:'';position:absolute;left:16px;top:36px;bottom:0;width:1px;background:var(--border)}
-.step:last-child::before{display:none}
-.step-num{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:800;color:var(--accent);width:34px;height:34px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:.05em;position:relative;z-index:1;background:var(--bg)}
-.step-h{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.22rem;margin-top:.3rem}
-.step-d{font-size:.8rem;color:var(--muted);line-height:1.6}
-.contact-box{margin-top:2.5rem;padding:1.4rem;background:var(--bg2);border:1px solid var(--border)}
+    /* ═══ Footer ═══ */
+    footer { background-color: var(--bg2); padding: 2rem 1.5rem; }
+    .foot-in { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .foot-copy { font-size: .8rem; color: var(--muted); }
+    .foot-links { list-style: none; display: flex; gap: 1.5rem; }
+    .foot-links a { font-size: .8rem; color: var(--muted); transition: color .2s ease; }
+    .foot-links a:hover { color: var(--text); }
 
-/* FOOTER */
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem}
-.foot-in{max-width:1260px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:2rem}
-.foot-copy{font-size:.78rem;color:var(--dimmer)}
-.foot-links{display:flex;gap:1.75rem;list-style:none}
-.foot-links a{font-size:.78rem;color:var(--dimmer);text-decoration:none;transition:color .2s}
-.foot-links a:hover{color:var(--muted)}
+    /* ═══ Filter Bar ═══ */
+    .filter-bar { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2rem; border-bottom: 1px solid #28282D; padding-bottom: 1rem; }
+    .ftab { background-color: var(--bg3); border: 1px solid #28282D; padding: .6rem 1.2rem; border-radius: var(--radius); font-size: .85rem; font-weight: 500; color: var(--muted); transition: all .2s ease; }
+    .ftab:hover { border-color: var(--accent); color: var(--accent); }
+    .ftab.on { background-color: var(--accent); color: var(--text); border-color: var(--accent); }
 
-/* CTA BAND */
-.cta-band{background:var(--accent);padding:4rem 2.5rem}
-.cta-in{max-width:1260px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
-.cta-band h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.5rem,2.8vw,2.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:540px}
-.cta-band p{color:rgba(255,255,255,.78);font-size:.875rem;margin-top:.4rem}
-.btn-white{background:#fff;color:var(--accent);border:none;padding:.9rem 1.9rem;font-size:.875rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:opacity .2s;font-family:'Inter',sans-serif}
-.btn-white:hover{opacity:.9}
+    /* ═══ Professor Cards ═══ */
+    .prof-card { background-color: var(--bg3); border-radius: var(--radius); padding: 1.5rem; border: 1px solid #28282D; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .prof-av { width: 70px; height: 70px; background-color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; color: var(--bg); margin-bottom: 1rem; font-family: 'Barlow Condensed', 'Vazirmatn', sans-serif; }
+    .prof-n { font-size: 1.3rem; color: var(--text); margin-bottom: .2rem; }
+    .prof-t { font-size: .85rem; color: var(--muted); margin-bottom: 1rem; }
+    .prof-d { font-size: .85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; flex-grow: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+    .tag { background-color: rgba(232,83,13,.1); color: var(--accent); font-size: .75rem; padding: .3rem .7rem; border-radius: .25rem; font-weight: 500; }
 
-/* RESPONSIVE */
-@media(max-width:960px){
-  .hero{grid-template-columns:1fr}
-  .hero-visual{display:none}
-  .hero-content{padding:3rem 1.5rem}
-  .g2,.g3,.g4{grid-template-columns:1fr}
-  .collab-g{grid-template-columns:1fr;gap:3rem}
-  nav{padding:0 1.25rem}
-  .nav-links li:not(:last-child){display:none}
-  .sec,.sec-full{padding:3.5rem 1.5rem}
-  .pg-hdr{padding:3rem 1.5rem 2rem}
-  .foot-in{flex-direction:column;align-items:flex-start}
-}
-</style>
+    /* ═══ Collaboration Form ═══ */
+    .collab-g { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; margin-top: 2.5rem; }
+    .fgrp { margin-bottom: 1.2rem; }
+    .form-lbl { display: block; font-size: .85rem; color: var(--muted); margin-bottom: .4rem; font-weight: 500; }
+    .form-inp, .form-ta, .form-sel {
+      width: 100%; padding: .8rem 1rem; background-color: var(--bg3); border: 1px solid #28282D;
+      border-radius: var(--radius); color: var(--text); font-size: .95rem; font-family: 'Vazirmatn', 'Inter', sans-serif;
+    }
+    .form-inp:focus, .form-ta:focus, .form-sel:focus { outline: none; border-color: var(--accent); }
+    .form-ta { min-height: 120px; resize: vertical; }
+    .form-inp::placeholder, .form-ta::placeholder { color: #777; text-align: right; }
+    .form-sel {
+      -webkit-appearance: none; appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23A0A0A0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat; background-position: left 1rem center; background-size: 1em;
+      padding-left: 2.5rem;
+    }
+    .form-error { border-color: #e74c3c !important; }
+    .steps { margin-top: 2rem; }
+    .step { display: flex; gap: 1.5rem; margin-bottom: 2rem; }
+    .step-num { font-family: 'Barlow Condensed', 'Vazirmatn', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--accent); line-height: 1; min-width: 50px; }
+    .step-h { font-size: 1.2rem; color: var(--text); margin-bottom: .4rem; }
+    .step-d { font-size: .85rem; color: var(--muted); line-height: 1.5; }
+    .contact-box { background-color: var(--bg2); border: 1px solid #28282D; border-radius: var(--radius); padding: 1.5rem; margin-top: 2rem; }
+
+    /* ═══ Modal ═══ */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; right: 0; width: 100%; height: 100%;
+      background-color: rgba(0,0,0,.7); z-index: 2000; justify-content: center; align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background-color: var(--bg2); border: 1px solid var(--accent); border-radius: var(--radius);
+      padding: 2rem; max-width: 550px; width: 90%; max-height: 80vh; overflow-y: auto;
+      text-align: right;
+    }
+    .modal h3 { color: var(--accent); margin-bottom: 1rem; font-size: 1.5rem; }
+    .modal .modal-row { display: flex; justify-content: space-between; padding: .6rem 0; border-bottom: 1px solid #28282D; font-size: .9rem; }
+    .modal .modal-row span:first-child { color: var(--muted); }
+    .modal .modal-row span:last-child { color: var(--text); font-weight: 500; }
+    .modal .btn { margin-top: 1.5rem; width: 100%; justify-content: center; }
+
+    /* ═══ Admin Panel ═══ */
+    .pg-hdr { padding: 2rem 1.5rem 0; max-width: 1200px; margin: 0 auto; }
+    .pg-hdr-in { text-align: right; }
+    .admin-section { background-color: var(--bg3); border: 1px solid #28282D; border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; }
+    .admin-section h3 { color: var(--accent); margin-bottom: 1.5rem; font-size: 1.3rem; display: flex; align-items: center; gap: .5rem; }
+    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .admin-grid .fgrp:last-child { grid-column: span 2; }
+    .admin-list { margin-top: 2rem; }
+    .admin-item { background-color: var(--bg2); border: 1px solid #28282D; border-radius: var(--radius); padding: 1rem; margin-bottom: .8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+    .admin-item-info { flex: 1; min-width: 200px; }
+    .admin-item-info strong { color: var(--text); }
+    .admin-item-info small { color: var(--muted); display: block; font-size: .8rem; }
+    .admin-item-actions { display: flex; gap: .5rem; }
+    .badge { font-size: .7rem; padding: .2rem .5rem; border-radius: .25rem; background-color: rgba(232,83,13,.15); color: var(--accent); margin-right: .5rem; }
+
+    /* ═══ Steps guide (inside admin) ═══ */
+    .guide { background-color: var(--bg2); border: 1px solid #28282D; border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; }
+    .guide h4 { color: var(--accent); margin-bottom: 1rem; }
+    .guide ol { padding-right: 1.5rem; color: var(--muted); font-size: .85rem; line-height: 2; }
+    .guide code { background-color: var(--bg3); padding: .1rem .4rem; border-radius: .25rem; font-size: .8rem; }
+
+    /* ═══ Toast ═══ */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background-color: var(--accent);
+      color: var(--text); padding: .8rem 2rem; border-radius: var(--radius); font-weight: 600; z-index: 3000;
+      opacity: 0; transition: opacity .3s ease; pointer-events: none;
+    }
+    .toast.show { opacity: 1; }
+
+    /* ═══ Responsive ═══ */
+    @media (max-width: 960px) {
+      .nav-links, .nav-cta { display: none; }
+      .mobile-nav-toggle { display: block; }
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 5rem; }
+      .hero-visual { order: 1; }
+      .hero-content { order: 2; }
+      .hero-stats { justify-content: center; }
+      .stat { align-items: center; }
+      .cta-in { flex-direction: column; text-align: center; }
+      .collab-g { grid-template-columns: 1fr; }
+      .foot-in { flex-direction: column; text-align: center; }
+      .admin-grid { grid-template-columns: 1fr; }
+      .admin-grid .fgrp:last-child { grid-column: span 1; }
+    }
+    @media (max-width: 600px) {
+      .hero-title { font-size: 3rem; }
+      .sec-h { font-size: 2.2rem; }
+      .g2, .g3, .g4 { grid-template-columns: 1fr; }
+      .ftab { width: 100%; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ═══════════ NAV ═══════════ -->
+<!-- ═══════════ TOAST ═══════════ -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════ MODAL ═══════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-content" onclick="event.stopPropagation()"></div>
+</div>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
 <nav>
-  <div class="logo" onclick="go('home')">
-    <div class="logo-box">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-        <path d="M10 1L12.9 7.6L20 8.6L14.9 13.5L16.2 20.5L10 17.3L3.8 20.5L5.1 13.5L0 8.6L7.1 7.6Z" fill="#E8530D"/>
-      </svg>
+  <div class="nav-in">
+    <div class="nav-brand">
+      <div class="nav-logo">مک</div>
+      <div class="nav-text">
+        <p>دانشگاه صنعتی شریف</p>
+        <p>مهندسی مکانیک</p>
+      </div>
     </div>
-    <div class="logo-text">
-      <em>Sharif University of Technology</em>
-      <strong>Mechanical Engineering</strong>
+    <div class="nav-links" id="nav-links">
+      <a href="#" id="nl-home" class="active" onclick="go('home')">خانه</a>
+      <a href="#" id="nl-labs" onclick="go('labs')">آزمایشگاه‌ها</a>
+      <a href="#" id="nl-faculty" onclick="go('faculty')">هیئت علمی</a>
+      <a href="#" id="nl-collab" onclick="go('collab')">همکاری</a>
+      <a href="#" id="nl-admin" onclick="go('admin')">مدیریت محتوا</a>
     </div>
+    <div class="nav-cta">
+      <button class="btn-p" onclick="go('collab')">شروع همکاری</button>
+    </div>
+    <div class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</div>
   </div>
-  <ul class="nav-links">
-    <li><a id="nl-home" class="active" onclick="go('home')">Home</a></li>
-    <li><a id="nl-labs" onclick="go('labs')">Labs</a></li>
-    <li><a id="nl-faculty" onclick="go('faculty')">Faculty</a></li>
-    <li><a id="nl-collab" onclick="go('collab')">Collaborate</a></li>
-    <li><a class="nav-cta" onclick="go('collab')">Initiate Collaboration</a></li>
-  </ul>
 </nav>
 
 <!-- ═══════════ HOME ═══════════ -->
 <div id="pg-home" class="page active">
-
   <section class="hero">
-    <div class="hero-visual">
-      <svg id="hero-svg" viewBox="0 0 550 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <radialGradient id="glw" cx="50%" cy="52%" r="48%">
-            <stop offset="0%" stop-color="#E8530D" stop-opacity=".22"/>
-            <stop offset="100%" stop-color="#E8530D" stop-opacity="0"/>
-          </radialGradient>
-          <linearGradient id="mt1" x1="20%" y1="10%" x2="80%" y2="90%">
-            <stop offset="0%" stop-color="#3A3530"/>
-            <stop offset="55%" stop-color="#28231E"/>
-            <stop offset="100%" stop-color="#141210"/>
-          </linearGradient>
-          <linearGradient id="mt2" x1="20%" y1="10%" x2="80%" y2="90%">
-            <stop offset="0%" stop-color="#2E2A26"/>
-            <stop offset="100%" stop-color="#0E0C0A"/>
-          </linearGradient>
-        </defs>
-        <rect width="550" height="700" fill="#060504"/>
-        <!-- grid -->
-        <g stroke="#16140F" stroke-width=".5" opacity=".7">
-          <line x1="0" y1="175" x2="550" y2="175"/><line x1="0" y1="350" x2="550" y2="350"/>
-          <line x1="0" y1="525" x2="550" y2="525"/><line x1="137" y1="0" x2="137" y2="700"/>
-          <line x1="275" y1="0" x2="275" y2="700"/><line x1="413" y1="0" x2="413" y2="700"/>
-        </g>
-        <!-- glow -->
-        <ellipse cx="275" cy="360" rx="195" ry="195" fill="url(#glw)"/>
-        <!-- large gear -->
-        <g id="gl" transform="translate(275,360)">
-          <path id="glp" fill="url(#mt1)" stroke="#3A3530" stroke-width=".5"/>
-          <circle r="58" fill="#060504" stroke="#2A2520" stroke-width="1"/>
-          <circle r="46" fill="none" stroke="#2A2520" stroke-width=".5"/>
-          <circle r="28" fill="#0B0A08" stroke="#1E1C18" stroke-width=".5"/>
-          <!-- spokes -->
-          <g stroke="#2A2520" stroke-width="1">
-            <line x1="0" y1="-44" x2="0" y2="-30"/><line x1="0" y1="44" x2="0" y2="30"/>
-            <line x1="-44" y1="0" x2="-30" y2="0"/><line x1="44" y1="0" x2="30" y2="0"/>
-            <line x1="-31" y1="-31" x2="-21" y2="-21"/><line x1="31" y1="-31" x2="21" y2="-21"/>
-            <line x1="-31" y1="31" x2="-21" y2="21"/><line x1="31" y1="31" x2="21" y2="21"/>
-          </g>
-        </g>
-        <!-- medium gear top-right -->
-        <g id="gm" transform="translate(455,195)">
-          <path id="gmp" fill="url(#mt2)" stroke="#2A2520" stroke-width=".5"/>
-          <circle r="24" fill="#060504" stroke="#1E1C18" stroke-width=".5"/>
-          <circle r="12" fill="#0B0A08" stroke="#1E1C18" stroke-width=".5"/>
-          <g stroke="#2A2520" stroke-width=".8">
-            <line x1="0" y1="-22" x2="0" y2="-14"/><line x1="0" y1="22" x2="0" y2="14"/>
-            <line x1="-22" y1="0" x2="-14" y2="0"/><line x1="22" y1="0" x2="14" y2="0"/>
-          </g>
-        </g>
-        <!-- small gear bottom-left -->
-        <g id="gs" transform="translate(95,520)">
-          <path id="gsp" fill="url(#mt2)" stroke="#1E1C18" stroke-width=".5"/>
-          <circle r="15" fill="#060504" stroke="#1E1C18" stroke-width=".5"/>
-        </g>
-        <!-- tiny gear top-left -->
-        <g id="gt" transform="translate(95,175)">
-          <path id="gtp" fill="url(#mt2)" stroke="#1E1C18" stroke-width=".5"/>
-          <circle r="10" fill="#060504" stroke="#1E1C18" stroke-width=".5"/>
-        </g>
-        <!-- accent corner marks -->
-        <rect x="0" y="0" width="2.5" height="55" fill="#E8530D" opacity=".55"/>
-        <rect x="0" y="0" width="55" height="2.5" fill="#E8530D" opacity=".55"/>
-        <rect x="527.5" y="672.5" width="2.5" height="27.5" fill="#E8530D" opacity=".3"/>
-        <rect x="523" y="697.5" width="27" height="2.5" fill="#E8530D" opacity=".3"/>
-        <!-- orange accent ring segment -->
-        <circle cx="275" cy="360" r="142" fill="none" stroke="#E8530D" stroke-width=".6" stroke-opacity=".18" stroke-dasharray="6 6"/>
-      </svg>
-    </div>
-
     <div class="hero-content">
-      <p class="eyebrow">Sharif University of Technology</p>
+      <p class="eyebrow">دانشگاه صنعتی شریف</p>
       <h1 class="hero-title">
-        <span class="w">Mechanical<br></span>
-        <span class="o">Engineering</span>
+        <span class="w">مهندسی<br></span>
+        <span class="o">مکانیک</span>
       </h1>
-      <p class="hero-desc">Where academic precision meets industrial power. We transform research into impact — partnering with industry to solve the most complex engineering challenges.</p>
+      <p class="hero-desc">
+        جایی که دقت علمی با قدرت صنعتی پیوند می‌خورد. ما پژوهش را به تأثیر تبدیل می‌کنیم —
+        با مشارکت صنعت برای حل پیچیده‌ترین چالش‌های مهندسی.
+      </p>
       <div class="hero-stats">
         <div class="stat">
-          <div class="stat-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
-          <div class="stat-n" data-to="34">0</div>
-          <div class="stat-l">Industrial Labs</div>
+          <div class="stat-ico">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+          </div>
+          <span class="stat-n" data-to="34" id="stat-labs">۳۴</span>
+          <span class="stat-l">آزمایشگاه صنعتی</span>
         </div>
         <div class="stat">
-          <div class="stat-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M9 21h6M12 15v6"/></svg></div>
-          <div class="stat-n" data-to="120" data-sfx="+">0</div>
-          <div class="stat-l">Patents Filed</div>
+          <div class="stat-ico">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <span class="stat-n" data-to="58" id="stat-faculty">۵۸</span>
+          <span class="stat-l">عضو هیئت علمی</span>
         </div>
         <div class="stat">
-          <div class="stat-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <div class="stat-n" data-to="85">0</div>
-          <div class="stat-l">Industry Partners</div>
+          <div class="stat-ico">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/></svg>
+          </div>
+          <span class="stat-n" data-to="120" id="stat-partners">۱۲۰+</span>
+          <span class="stat-l">همکار صنعتی</span>
         </div>
       </div>
       <div class="hero-actions">
-        <button class="btn btn-p" onclick="go('collab')">Initiate Collaboration <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-        <button class="btn btn-s" onclick="go('labs')">Explore Labs</button>
+        <button class="btn btn-p" onclick="go('labs')">کاوش آزمایشگاه‌ها ←</button>
+        <button class="btn btn-s" onclick="go('collab')">شروع همکاری</button>
       </div>
+    </div>
+    <div class="hero-visual">
+      <!-- Hero SVG: چرخ‌دنده و نماد مکانیک -->
+      <svg width="380" height="380" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="90" stroke="#E8530D" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.5"/>
+        <circle cx="100" cy="100" r="60" stroke="#E8530D" stroke-width="18" stroke-dasharray="18 12"/>
+        <circle cx="100" cy="100" r="30" fill="#E8530D" opacity="0.18"/>
+        <circle cx="100" cy="100" r="8" fill="#E8530D"/>
+        <line x1="100" y1="10" x2="100" y2="40" stroke="#E8530D" stroke-width="3" stroke-linecap="round"/>
+        <line x1="100" y1="160" x2="100" y2="190" stroke="#E8530D" stroke-width="3" stroke-linecap="round"/>
+        <line x1="10" y1="100" x2="40" y2="100" stroke="#E8530D" stroke-width="3" stroke-linecap="round"/>
+        <line x1="160" y1="100" x2="190" y2="100" stroke="#E8530D" stroke-width="3" stroke-linecap="round"/>
+        <line x1="36" y1="36" x2="58" y2="58" stroke="#E8530D" stroke-width="3" stroke-linecap="round"/>
+        <line x1="142" y1="142" x2="164" y2="164" stroke="#E8530D" stroke-width="3" stroke-linecap="round"/>
+        <line x1="36" y1="164" x2="58" y2="142" stroke="#E8530D" stroke-width="3" stroke-linecap="round"/>
+        <line x1="142" y1="58" x2="164" y2="36" stroke="#E8530D" stroke-width="3" stroke-linecap="round"/>
+        <text x="100" y="108" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="14" font-weight="700" fill="#E8530D">ME</text>
+      </svg>
     </div>
   </section>
 
-  <!-- What We Offer -->
-  <div class="sec-full">
+  <!-- Home: چرا شریف -->
+  <section class="sec-full">
     <div class="sec-inner">
-      <p class="sec-ey">What We Offer</p>
-      <h2 class="sec-h">Engineering at the Frontier</h2>
-      <p class="sec-d">Our department bridges the gap between fundamental research and real-world industrial application across every domain of mechanical engineering.</p>
+      <p class="sec-ey">چرا دانشکده مکانیک شریف؟</p>
+      <h2 class="sec-h">پلی میان دانشگاه و صنعت</h2>
+      <p class="sec-d">
+        دانشکده مهندسی مکانیک شریف با بیش از نیم قرن سابقه، یکی از قوی‌ترین قطب‌های پژوهشی کشور است.
+        ما با برخورداری از آزمایشگاه‌های پیشرفته، اعضای هیئت علمی برجسته، و ارتباط تنگاتنگ با صنایع بزرگ،
+        آماده‌ایم تا پیچیده‌ترین مسائل مهندسی کشور را حل کنیم.
+      </p>
       <div class="g3">
         <div class="card">
-          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12h6M16 12h6M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/><circle cx="12" cy="12" r="3"/></svg></div>
-          <h3 class="card-h">Industrial Research</h3>
-          <p class="card-d">Contract research programs with direct industry integration. Our labs tackle real engineering problems with measurable, deployable outcomes.</p>
+          <div class="card-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/></svg>
+          </div>
+          <h3 class="card-h">پژوهش در تراز جهانی</h3>
+          <p class="card-d">انتشار سالانه بیش از ۳۰۰ مقاله در مجلات معتبر بین‌المللی و همکاری با دانشگاه‌های تراز اول دنیا.</p>
         </div>
         <div class="card">
-          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-          <h3 class="card-h">Technology Transfer</h3>
-          <p class="card-d">120+ patents available for licensing. Our IP portfolio spans robotics, advanced materials, combustion systems, and precision manufacturing.</p>
+          <div class="card-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3 class="card-h">زیرساخت پیشرفته</h3>
+          <p class="card-d">بیش از ۳۰ آزمایشگاه تخصصی مجهز به تجهیزات روز شامل تونل باد، تست مواد، رباتیک، و احتراق.</p>
         </div>
         <div class="card">
-          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3 class="card-h">Expert Consulting</h3>
-          <p class="card-d">40+ faculty members offering specialized consulting across all branches of mechanical engineering, from CFD analysis to structural integrity.</p>
+          <div class="card-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <h3 class="card-h">همکاری با صنعت</h3>
+          <p class="card-d">بیش از ۱۲۰ پروژه مشترک با صنایع بزرگ کشور در حوزه‌های نفت، گاز، خودروسازی، هوافضا و انرژی.</p>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Featured Labs -->
-  <section class="sec">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;gap:1rem;flex-wrap:wrap">
-      <div>
-        <p class="sec-ey">Research Infrastructure</p>
-        <h2 class="sec-h" style="margin-bottom:0">Featured Labs</h2>
-      </div>
-      <button class="btn btn-s" onclick="go('labs')">View All Labs →</button>
-    </div>
-    <div class="g2">
-      <div class="card">
-        <span class="card-tag">Industrial</span>
-        <h3 class="card-h">Fluid Mechanics & Hydraulics</h3>
-        <p class="card-d">Advanced flow characterization for aerodynamic and hydrodynamic analysis. Equipped with PIV systems, subsonic wind tunnels, and high-performance CFD clusters.</p>
-        <ul class="card-list"><li>Particle Image Velocimetry (PIV)</li><li>Subsonic Wind Tunnel (10–80 m/s)</li><li>256-Core CFD Cluster</li><li>Cavitation Test Rig</li></ul>
-      </div>
-      <div class="card">
-        <span class="card-tag">Industrial</span>
-        <h3 class="card-h">Robotics & Automation</h3>
-        <p class="card-d">Full-scale robotics development covering manipulation, autonomous navigation, and human-robot collaboration for industrial and research applications.</p>
-        <ul class="card-list"><li>6-DOF Industrial Robot Arms</li><li>ROS2 Development Platform</li><li>Autonomous Vehicle Test Track</li><li>Force/Torque Sensor Suite</li></ul>
       </div>
     </div>
   </section>
-
-  <!-- CTA -->
-  <div class="cta-band">
-    <div class="cta-in">
-      <div>
-        <h2>Ready to collaborate with Iran's top engineering faculty?</h2>
-        <p>Join 85+ industry partners already working with our department.</p>
-      </div>
-      <button class="btn-white" onclick="go('collab')">Get In Touch →</button>
-    </div>
-  </div>
-
-  <footer>
-    <div class="foot-in">
-      <p class="foot-copy">© 2025 Sharif University of Technology — Mechanical Engineering Department</p>
-      <ul class="foot-links"><li><a href="#">Sharif University</a></li><li><a href="#">Academic Portal</a></li><li><a href="#">Publications</a></li></ul>
-    </div>
-  </footer>
 </div>
 
 <!-- ═══════════ LABS ═══════════ -->
 <div id="pg-labs" class="page">
   <div class="pg-hdr">
     <div class="pg-hdr-in">
-      <p class="sec-ey">Research Infrastructure</p>
-      <h1 class="sec-h" style="font-size:clamp(2.5rem,4.5vw,4rem);margin-bottom:.6rem">Our Laboratories</h1>
-      <p style="color:var(--muted);font-size:.95rem;max-width:520px">State-of-the-art facilities for industrial research and academic training. Every lab is equipped with industry-grade instruments and staffed by specialized researchers.</p>
+      <p class="sec-ey">زیرساخت پژوهشی</p>
+      <h2 class="sec-h">آزمایشگاه‌ها</h2>
+      <p class="sec-d">آزمایشگاه‌های تخصصی دانشکده مهندسی مکانیک، مجهز به پیشرفته‌ترین تجهیزات برای پژوهش و همکاری با صنعت.</p>
     </div>
   </div>
   <section class="sec">
-    <div class="filter-bar">
-      <button class="ftab on" onclick="fLabs('all',this)">All Labs</button>
-      <button class="ftab" onclick="fLabs('industrial',this)">Industrial</button>
-      <button class="ftab" onclick="fLabs('educational',this)">Educational</button>
-    </div>
-    <div id="labs-grid" class="g3"></div>
+    <div class="filter-bar" id="labs-filter-bar"></div>
+    <div class="g3" id="labs-grid"></div>
   </section>
-  <footer><div class="foot-in"><p class="foot-copy">© 2025 Sharif University of Technology — Mechanical Engineering Department</p><ul class="foot-links"><li><a href="#">Sharif University</a></li></ul></div></footer>
 </div>
 
 <!-- ═══════════ FACULTY ═══════════ -->
 <div id="pg-faculty" class="page">
   <div class="pg-hdr">
     <div class="pg-hdr-in">
-      <p class="sec-ey">Academic Excellence</p>
-      <h1 class="sec-h" style="font-size:clamp(2.5rem,4.5vw,4rem);margin-bottom:.6rem">Our Faculty</h1>
-      <p style="color:var(--muted);font-size:.95rem;max-width:520px">40+ expert professors with specialized research skills available for industry partnership, consulting, and joint projects.</p>
+      <p class="sec-ey">نیروی انسانی</p>
+      <h2 class="sec-h">هیئت علمی</h2>
+      <p class="sec-d">اعضای هیئت علمی دانشکده مهندسی مکانیک شریف؛ پژوهشگرانی پیشرو در حوزه‌های متنوع مهندسی مکانیک.</p>
     </div>
   </div>
   <section class="sec">
-    <div class="filter-bar">
-      <button class="ftab on" onclick="fFaculty('all',this)">All Fields</button>
-      <button class="ftab" onclick="fFaculty('fluids',this)">Fluids & Thermal</button>
-      <button class="ftab" onclick="fFaculty('robotics',this)">Robotics & Control</button>
-      <button class="ftab" onclick="fFaculty('materials',this)">Materials & Mfg.</button>
-      <button class="ftab" onclick="fFaculty('structures',this)">Structures & Design</button>
-    </div>
-    <div id="faculty-grid" class="g4"></div>
+    <div class="filter-bar" id="faculty-filter-bar"></div>
+    <div class="g3" id="faculty-grid"></div>
   </section>
-  <footer><div class="foot-in"><p class="foot-copy">© 2025 Sharif University of Technology — Mechanical Engineering Department</p><ul class="foot-links"><li><a href="#">Sharif University</a></li></ul></div></footer>
 </div>
 
 <!-- ═══════════ COLLABORATE ═══════════ -->
 <div id="pg-collab" class="page">
   <div class="pg-hdr">
     <div class="pg-hdr-in">
-      <p class="sec-ey">Partnership</p>
-      <h1 class="sec-h" style="font-size:clamp(2.5rem,4.5vw,4rem);margin-bottom:.6rem">Initiate Collaboration</h1>
-      <p style="color:var(--muted);font-size:.95rem;max-width:520px">Tell us about your engineering challenge and we'll connect you with the right faculty and lab resources within 48 hours.</p>
+      <p class="sec-ey">مشارکت</p>
+      <h2 class="sec-h">همکاری با صنعت</h2>
+      <p class="sec-d">فرم زیر را پر کنید تا تیم ما ظرف ۲ روز کاری با شما تماس بگیرد و بهترین مسیر همکاری را مشخص کند.</p>
     </div>
   </div>
   <section class="sec">
-    <!-- Partnership types -->
-    <div class="g4" style="margin-bottom:4rem">
-      <div class="card" style="text-align:center">
-        <div class="card-ico" style="margin:0 auto 1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3 class="card-h">Joint Research</h3>
-        <p class="card-d" style="font-size:.8rem">Co-develop solutions with our researchers embedded in your team and facilities.</p>
-      </div>
-      <div class="card" style="text-align:center">
-        <div class="card-ico" style="margin:0 auto 1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div>
-        <h3 class="card-h">Contract Research</h3>
-        <p class="card-d" style="font-size:.8rem">Commission targeted studies with defined deliverables and clear timelines.</p>
-      </div>
-      <div class="card" style="text-align:center">
-        <div class="card-ico" style="margin:0 auto 1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3 class="card-h">Tech Licensing</h3>
-        <p class="card-d" style="font-size:.8rem">License proven technologies from our patent portfolio for commercial deployment.</p>
-      </div>
-      <div class="card" style="text-align:center">
-        <div class="card-ico" style="margin:0 auto 1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3 class="card-h">Talent Pipeline</h3>
-        <p class="card-d" style="font-size:.8rem">Recruit top MSc and PhD graduates trained in your specific engineering domain.</p>
-      </div>
-    </div>
-
     <div class="collab-g">
-      <!-- Form -->
+      <!-- فرم -->
       <div>
-        <h2 class="sec-h" style="font-size:1.7rem;margin-bottom:1.75rem">Send a Request</h2>
-        <div class="fgrp"><label class="form-lbl">Full Name</label><input class="form-inp" type="text" placeholder="Your full name"></div>
-        <div class="fgrp"><label class="form-lbl">Company / Organization</label><input class="form-inp" type="text" placeholder="Company or institution name"></div>
-        <div class="fgrp"><label class="form-lbl">Email Address</label><input class="form-inp" type="email" placeholder="you@company.com"></div>
-        <div class="fgrp">
-          <label class="form-lbl">Collaboration Type</label>
-          <select class="form-sel form-inp"><option value="">Select type…</option><option>Joint Research</option><option>Contract Research</option><option>Technology Licensing</option><option>Talent Pipeline</option><option>Expert Consulting</option></select>
-        </div>
-        <div class="fgrp">
-          <label class="form-lbl">Field of Interest</label>
-          <select class="form-sel form-inp"><option value="">Select field…</option><option>Fluid Mechanics & CFD</option><option>Robotics & Automation</option><option>Materials & Manufacturing</option><option>Thermodynamics & Heat Transfer</option><option>Structural Analysis & FEA</option><option>Combustion & Energy</option><option>Composites</option><option>Other</option></select>
-        </div>
-        <div class="fgrp"><label class="form-lbl">Project Description</label><textarea class="form-ta" placeholder="Briefly describe your engineering challenge or collaboration idea…"></textarea></div>
-        <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:.4rem" onclick="sendForm()">Submit Request →</button>
-        <p id="ok" style="display:none;color:#4BB86A;font-size:.82rem;margin-top:.9rem;text-align:center">✓ Request submitted. We will be in touch within 2 business days.</p>
+        <h3 style="color:var(--accent);margin-bottom:1.5rem;">ارسال درخواست</h3>
+        <form id="collab-form" onsubmit="handleFormSubmit(event)">
+          <div class="fgrp">
+            <label class="form-lbl" for="cf-name">نام کامل *</label>
+            <input class="form-inp" type="text" id="cf-name" placeholder="نام و نام خانوادگی" required>
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl" for="cf-company">شرکت / سازمان</label>
+            <input class="form-inp" type="text" id="cf-company" placeholder="نام شرکت یا سازمان">
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl" for="cf-email">آدرس ایمیل *</label>
+            <input class="form-inp" type="email" id="cf-email" placeholder="you@company.com" required>
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl" for="cf-type">نوع همکاری</label>
+            <select class="form-sel form-inp" id="cf-type">
+              <option value="">انتخاب نوع همکاری…</option>
+              <option value="پژوهش مشترک">پژوهش مشترک</option>
+              <option value="تحقیق قراردادی">تحقیق قراردادی</option>
+              <option value="انتقال فناوری">انتقال فناوری</option>
+              <option value="کارآموزی و جذب استعداد">کارآموزی و جذب استعداد</option>
+              <option value="مشاوره تخصصی">مشاوره تخصصی</option>
+            </select>
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl" for="cf-field">حوزه تخصصی</label>
+            <select class="form-sel form-inp" id="cf-field">
+              <option value="">انتخاب حوزه…</option>
+              <option value="مکانیک سیالات و دینامیک محاسباتی">مکانیک سیالات و دینامیک محاسباتی</option>
+              <option value="رباتیک و اتوماسیون">رباتیک و اتوماسیون</option>
+              <option value="مواد و ساخت">مواد و ساخت</option>
+              <option value="ترمودینامیک و انتقال حرارت">ترمودینامیک و انتقال حرارت</option>
+              <option value="تحلیل سازه و المان محدود">تحلیل سازه و المان محدود</option>
+              <option value="احتراق و انرژی">احتراق و انرژی</option>
+              <option value="کامپوزیت‌ها">کامپوزیت‌ها</option>
+              <option value="سایر">سایر</option>
+            </select>
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl" for="cf-desc">شرح پروژه *</label>
+            <textarea class="form-ta" id="cf-desc" placeholder="چالش مهندسی یا ایده همکاری خود را به اختصار شرح دهید…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-p" style="width:100%;justify-content:center;">ارسال درخواست ←</button>
+        </form>
       </div>
 
-      <!-- How it works -->
+      <!-- How it Works -->
       <div>
-        <h2 class="sec-h" style="font-size:1.7rem;margin-bottom:1.75rem">How It Works</h2>
+        <h3 style="color:var(--accent);margin-bottom:1.5rem;">فرایند همکاری</h3>
         <div class="steps">
           <div class="step">
-            <div class="step-num">01</div>
-            <div><h3 class="step-h">Submit Your Request</h3><p class="step-d">Fill out the contact form describing your engineering challenge or collaboration idea. Attach any relevant technical documents.</p></div>
+            <div class="step-num">۱</div>
+            <div><div class="step-h">ارسال درخواست</div><div class="step-d">فرم را با شرح نیاز خود تکمیل و ارسال کنید.</div></div>
           </div>
           <div class="step">
-            <div class="step-num">02</div>
-            <div><h3 class="step-h">Expert Matching</h3><p class="step-d">Our research office reviews your request and matches you with the most relevant faculty and lab capabilities within 48 hours.</p></div>
+            <div class="step-num">۲</div>
+            <div><div class="step-h">تطبیق با متخصص</div><div class="step-d">تیم ما طی ۲ روز کاری بهترین استاد یا آزمایشگاه را به شما معرفی می‌کند.</div></div>
           </div>
           <div class="step">
-            <div class="step-num">03</div>
-            <div><h3 class="step-h">Discovery Meeting</h3><p class="step-d">A technical scoping session with matched faculty to assess feasibility, timelines, and resources required for your project.</p></div>
+            <div class="step-num">۳</div>
+            <div><div class="step-h">جلسه آشنایی</div><div class="step-d">یک جلسه (حضوری یا آنلاین) برای بررسی جزئیات برگزار می‌شود.</div></div>
           </div>
           <div class="step">
-            <div class="step-num">04</div>
-            <div><h3 class="step-h">Agreement & Kickoff</h3><p class="step-d">Finalize terms through the university's technology transfer office and launch the collaboration with a defined project plan.</p></div>
+            <div class="step-num">۴</div>
+            <div><div class="step-h">توافق و شروع</div><div class="step-d">قرارداد تنظیم و پروژه آغاز می‌شود.</div></div>
           </div>
         </div>
-
         <div class="contact-box">
-          <p style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.45rem">Direct Contact</p>
-          <p style="font-size:.85rem;color:var(--muted)">Research Collaboration Office</p>
-          <p style="font-size:.875rem;color:var(--text);margin-top:.2rem">me-research@sharif.edu</p>
-          <p style="font-size:.85rem;color:var(--muted);margin-top:.15rem">+98 21 6616 5500</p>
+          <p style="color:var(--muted);font-size:.85rem;margin-bottom:.5rem;">📧 <strong>تماس مستقیم:</strong></p>
+          <p style="font-size:.9rem;">me-research@sharif.edu</p>
+          <p style="font-size:.9rem;margin-top:.3rem;">۰۲۱-۶۶۱۶۵۵۰۰</p>
         </div>
       </div>
     </div>
   </section>
-
-  <footer><div class="foot-in"><p class="foot-copy">© 2025 Sharif University of Technology — Mechanical Engineering Department</p><ul class="foot-links"><li><a href="#">Sharif University</a></li><li><a href="#">Academic Portal</a></li></ul></div></footer>
 </div>
 
+<!-- ═══════════ ADMIN ═══════════ -->
+<div id="pg-admin" class="page">
+  <div class="pg-hdr">
+    <div class="pg-hdr-in">
+      <p class="sec-ey">ابزار مدیریت</p>
+      <h2 class="sec-h">مدیریت محتوای سایت</h2>
+      <p class="sec-d">در این بخش می‌توانید آزمایشگاه‌ها و اعضای هیئت علمی را اضافه، ویرایش یا حذف کنید. همه داده‌ها در مرورگر شما (localStorage) ذخیره می‌شود.</p>
+    </div>
+  </div>
+
+  <section class="sec">
+    <!-- ═══ راهنمای گام‌به‌گام ═══ -->
+    <div class="guide">
+      <h4>📖 راهنمای گام‌به‌گام آپلود محتوا</h4>
+      <ol>
+        <li><strong>افزودن آزمایشگاه:</strong> در بخش «افزودن آزمایشگاه جدید»، نام، حوزه، توضیحات و تجهیزات را وارد کرده و روی «ذخیره» کلیک کنید. آزمایشگاه در صفحه <em>آزمایشگاه‌ها</em> نمایش داده می‌شود.</li>
+        <li><strong>افزودن عضو هیئت علمی:</strong> در بخش «افزودن عضو هیئت علمی جدید»، نام، سمت، حوزه و مهارت‌ها را وارد کنید. پروفایل در صفحه <em>هیئت علمی</em> ظاهر می‌شود.</li>
+        <li><strong>ویرایش:</strong> روی دکمه ✏️ در کنار هر آیتم کلیک کنید تا فرم با اطلاعات فعلی پر شود. پس از تغییر، «به‌روزرسانی» را بزنید.</li>
+        <li><strong>حذف:</strong> روی دکمه 🗑 کلیک کنید. (این عملیات برگشت‌ناپذیر است.)</li>
+        <li><strong>داده‌های پیش‌فرض:</strong> در اولین بار که سایت را باز می‌کنید، چند نمونه داده پیش‌فرض بارگذاری می‌شود. با دکمه «بارگذاری داده‌های پیش‌فرض» می‌توانید آن‌ها را بازیابی کنید.</li>
+        <li><strong>مشاهده خروجی فرم همکاری:</strong> فرم همکاری در page <em>همکاری</em> پس از ارسال، یک پنجره (Modal) با خلاصه اطلاعات واردشده نمایش می‌دهد و همزمان در localStorage ذخیره می‌کند. برای دیدن درخواست‌های ثبت‌شده، Console مرورگر (F12) را باز کنید — یا در نسخه‌های بعدی یک پنل «صندوق درخواست‌ها» اضافه کنید.</li>
+        <li><strong>ذخیره‌سازی:</strong> همه داده‌ها در <code>localStorage</code> مرورگر ذخیره می‌شوند — یعنی با بستن مرورگر پاک نمی‌شوند. برای انتقال به سرور واقعی باید یک بک‌اند (PHP/Node/Python) متصل کنید.</li>
+      </ol>
+    </div>
+
+    <!-- ═══ افزودن/ویرایش آزمایشگاه ═══ -->
+    <div class="admin-section" id="admin-lab-form-section">
+      <h3>🔬 <span id="lab-form-title">افزودن آزمایشگاه جدید</span></h3>
+      <form id="admin-lab-form" onsubmit="saveLab(event)">
+        <input type="hidden" id="lab-edit-id">
+        <div class="admin-grid">
+          <div class="fgrp">
+            <label class="form-lbl">نام آزمایشگاه *</label>
+            <input class="form-inp" type="text" id="lab-name" placeholder="مثلاً: آزمایشگاه رباتیک" required>
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl">حوزه تخصصی *</label>
+            <input class="form-inp" type="text" id="lab-field" placeholder="مثلاً: رباتیک و اتوماسیون" required>
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl">توضیحات</label>
+            <textarea class="form-ta" id="lab-desc" placeholder="توضیح کوتاه درباره آزمایشگاه…" rows="2"></textarea>
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl">تجهیزات (با کاما جدا کنید)</label>
+            <input class="form-inp" type="text" id="lab-equip" placeholder="مثلاً: بازوی رباتیک، اسکنر سه‌بعدی، CNC">
+          </div>
+        </div>
+        <div style="margin-top:1rem;display:flex;gap:.8rem;align-items:center;">
+          <button type="submit" class="btn btn-p" id="lab-submit-btn">ذخیره آزمایشگاه</button>
+          <button type="button" class="btn btn-s btn-sm" id="lab-cancel-btn" style="display:none;" onclick="cancelLabEdit()">انصراف</button>
+        </div>
+      </form>
+
+      <!-- لیست آزمایشگاه‌ها -->
+      <div class="admin-list" id="admin-labs-list"></div>
+      <button class="btn btn-s btn-sm" style="margin-top:1rem;" onclick="loadDefaultLabs()">بارگذاری داده‌های پیش‌فرض (آزمایشگاه‌ها)</button>
+    </div>
+
+    <!-- ═══ افزودن/ویرایش عضو هیئت علمی ═══ -->
+    <div class="admin-section">
+      <h3>👤 <span id="faculty-form-title">افزودن عضو هیئت علمی جدید</span></h3>
+      <form id="admin-faculty-form" onsubmit="saveFaculty(event)">
+        <input type="hidden" id="fac-edit-id">
+        <div class="admin-grid">
+          <div class="fgrp">
+            <label class="form-lbl">نام کامل *</label>
+            <input class="form-inp" type="text" id="fac-name" placeholder="مثلاً: دکتر علی محمدی" required>
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl">سمت</label>
+            <input class="form-inp" type="text" id="fac-title" placeholder="مثلاً: استاد تمام">
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl">حوزه تخصصی *</label>
+            <input class="form-inp" type="text" id="fac-field" placeholder="مثلاً: مکانیک سیالات" required>
+          </div>
+          <div class="fgrp">
+            <label class="form-lbl">مهارت‌ها (با کاما جدا کنید)</label>
+            <input class="form-inp" type="text" id="fac-skills" placeholder="مثلاً: CFD, توربولانس, آیرودینامیک">
+          </div>
+        </div>
+        <div class="fgrp" style="margin-top:.5rem;">
+          <label class="form-lbl">بیوگرافی کوتاه</label>
+          <textarea class="form-ta" id="fac-desc" placeholder="شرح کوتاه درباره زمینه پژوهشی…" rows="2"></textarea>
+        </div>
+        <div style="margin-top:1rem;display:flex;gap:.8rem;align-items:center;">
+          <button type="submit" class="btn btn-p" id="fac-submit-btn">ذخیره عضو هیئت علمی</button>
+          <button type="button" class="btn btn-s btn-sm" id="fac-cancel-btn" style="display:none;" onclick="cancelFacultyEdit()">انصراف</button>
+        </div>
+      </form>
+
+      <!-- لیست اعضا -->
+      <div class="admin-list" id="admin-faculty-list"></div>
+      <button class="btn btn-s btn-sm" style="margin-top:1rem;" onclick="loadDefaultFaculty()">بارگذاری داده‌های پیش‌فرض (هیئت علمی)</button>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════ CTA BAND ═══════════ -->
+<section class="cta-band">
+  <div class="cta-in">
+    <div>
+      <h2>آماده‌اید پروژه‌تان را شروع کنید؟</h2>
+      <p>همین امروز درخواست خود را ثبت کنید تا تیم ما با شما تماس بگیرد.</p>
+    </div>
+    <button class="btn-white" onclick="go('collab')">شروع همکاری ←</button>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="foot-in">
+    <p class="foot-copy">© ۱۴۰۴ دانشگاه صنعتی شریف — دانشکده مهندسی مکانیک</p>
+    <ul class="foot-links">
+      <li><a href="https://www.sharif.edu" target="_blank">دانشگاه شریف</a></li>
+      <li><a href="#" onclick="go('admin')">مدیریت محتوا</a></li>
+      <li><a href="mailto:me-research@sharif.edu">تماس</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
 <script>
-// ═══ DATA ═══
-const LABS=[
-  {t:'industrial',n:'Fluid Mechanics & Hydraulics',d:'Advanced flow characterization for aerodynamic and hydrodynamic analysis at engineering scale. Industry-grade testing from laminar to fully turbulent regimes.',eq:['Particle Image Velocimetry (PIV)','Subsonic Wind Tunnel (10–80 m/s)','256-Core CFD Cluster','Cavitation & Pump Test Rig']},
-  {t:'industrial',n:'Thermodynamics & Heat Transfer',d:'Thermal analysis covering conduction, convection, radiation, and phase-change processes. Precision measurement at temperatures from cryogenic to 1500°C.',eq:['Infrared Thermography System','Heat Exchanger Test Rigs','Phase-Change Apparatus','ANSYS Fluent + Thermal Suite']},
-  {t:'industrial',n:'Robotics & Automation',d:'Full-scale robotics research covering manipulation, autonomous navigation, and human-robot collaboration for industrial deployment.',eq:['6-DOF Industrial Robot Arms','ROS2 Development Platform','Autonomous Vehicle Test Track','Force/Torque Sensor Suite']},
-  {t:'industrial',n:'Materials Testing & Failure Analysis',d:'Comprehensive mechanical property testing and failure diagnosis for metals, polymers, ceramics, and composite materials.',eq:['Universal Testing Machine (500 kN)','SEM/EDX System','Fatigue Testing Rig (R=-1)','Charpy/Izod Impact Tester']},
-  {t:'industrial',n:'Internal Combustion Engines',d:'Engine development and emissions analysis for automotive and industrial power systems. Steady-state and transient testing capabilities.',eq:['Engine Dynamometer (250 kW)','Emissions Analyzer (Euro 6 grade)','In-Cylinder Combustion Analyzer','Direct-Injection Fuel Test Bench']},
-  {t:'industrial',n:'Advanced Manufacturing',d:'Precision manufacturing and process development for complex part geometries, hybrid materials, and near-net-shape production.',eq:['5-Axis CNC Machining Center','Wire & Sinker EDM','Metal AM — DMLS / SLM','CMM & Optical Metrology']},
-  {t:'industrial',n:'Composites & Advanced Materials',d:'Design and manufacture of fiber-reinforced composites for aerospace, automotive, and structural applications with full NDT capability.',eq:['Autoclave (Ø2 m, 12 bar)','Resin Transfer Molding (RTM)','Phased-Array Ultrasonic NDT','DMA & TGA Analyzers']},
-  {t:'industrial',n:'Vibrations & Dynamic Systems',d:'Structural dynamics analysis, modal testing, and active vibration control for rotating machinery and civil structures.',eq:['Multi-Channel DAQ (64 ch)','Electrodynamic Shaker (5 kN)','LMS Test.Lab Modal Software','Semi-Anechoic Chamber']},
-  {t:'educational',n:'CAD/CAM & Digital Fabrication',d:'Design-to-manufacturing pipeline training using industry-standard software and digital fabrication equipment.',eq:['CATIA V5 / SolidWorks','FDM, SLA & PolyJet Printers','CNC Router & Laser Cutter','Reverse Engineering Scanner']},
-  {t:'educational',n:'Measurement & Instrumentation',d:'Fundamentals of engineering measurement, sensor calibration, signal conditioning, and data acquisition systems.',eq:['Multi-Channel DAQ Systems','Strain Gauge Bridges & Wheatstone','Calibration Reference Standards','LabVIEW & NI Hardware']},
-  {t:'educational',n:'Mechatronics & Control',d:'Integration of mechanical, electrical, and software systems for intelligent machine and automation design.',eq:['Siemens PLC Systems','Arduino / Raspberry Pi Kits','Servo Drive Test Benches','MATLAB/Simulink Real-Time']},
-  {t:'educational',n:'Engineering Simulation Center',d:'High-performance computing cluster for FEA, CFD, multibody dynamics, and topology optimization.',eq:['ANSYS Mechanical & Fluent','Abaqus / CAE','OpenFOAM HPC Nodes (128 cores)','Adams Multibody Dynamics']}
+// ──────────────────────────────────────
+// ۰. ابزارهای کمکی
+// ──────────────────────────────────────
+function _(id) { return document.getElementById(id); }
+
+function showToast(msg) {
+  const t = _('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ──────────────────────────────────────
+// ۱. پیمایش بین صفحات (SPA)
+// ──────────────────────────────────────
+function go(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const pg = _('pg-' + page);
+  if (pg) pg.classList.add('active');
+
+  // به‌روزرسانی active در nav
+  document.querySelectorAll('#nav-links a').forEach(a => a.classList.remove('active'));
+  const nl = _('nl-' + page);
+  if (nl) nl.classList.add('active');
+
+  // بازسازی لیست‌ها هنگام ورود به صفحه
+  if (page === 'labs') renderLabsPage();
+  if (page === 'faculty') renderFacultyPage();
+  if (page === 'admin') renderAdminLists();
+}
+
+// ──────────────────────────────────────
+// ۲. مدیریت داده‌ها (localStorage)
+// ──────────────────────────────────────
+const STORAGE_LABS = 'sharif_me_labs';
+const STORAGE_FACULTY = 'sharif_me_faculty';
+const STORAGE_REQUESTS = 'sharif_me_requests';
+
+function getStore(key) {
+  try { return JSON.parse(localStorage.getItem(key)) || []; }
+  catch(e) { return []; }
+}
+function setStore(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+// ──────────────────────────────────────
+// ۲-الف. داده‌های پیش‌فرض
+// ──────────────────────────────────────
+const DEFAULT_LABS = [
+  { id:'l1', name:'آزمایشگاه رباتیک و اتوماسیون', field:'رباتیک و اتوماسیون', desc:'پژوهش در زمینه رباتیک صنعتی، ربات‌های نرم، کنترل پیشرفته و اتوماسیون خطوط تولید.', equip:'بازوی رباتیک ۶ درجه آزادی، اسکنر سه‌بعدی، CNC پنج‌محوره، سیستم بینایی ماشین' },
+  { id:'l2', name:'آزمایشگاه مکانیک سیالات و CFD', field:'مکانیک سیالات', desc:'شبیه‌سازی عددی جریان‌های پیچیده، توربولانس، جریان‌های چندفازی و کاربردهای صنعتی.', equip:'خوشه محاسباتی ۱۲۸ هسته‌ای، تونل باد مادون صوت، سیستم PIV' },
+  { id:'l3', name:'آزمایشگاه مواد و متالورژی', field:'مواد و ساخت', desc:'مشخصه‌یابی مکانیکی و حرارتی مواد، تولید افزودنی، کامپوزیت‌های پیشرفته.', equip:'میکروسکوپ الکترونی SEM، دستگاه تست کشش، پرینتر سه‌بعدی فلزی' },
+  { id:'l4', name:'آزمایشگاه احتراق و انرژی', field:'احتراق و انرژی', desc:'تحلیل تجربی و عددی فرایندهای احتراق، آلایندگی، سوخت‌های جایگزین و بهینه‌سازی انرژی.', equip:'محفظه احتراق شفاف، آنالایزر گاز، طیف‌سنج لیزری' },
+  { id:'l5', name:'آزمایشگاه ارتعاشات و آکوستیک', field:'تحلیل سازه', desc:'تحلیل ارتعاشات سازه‌ها، تست مودال، کنترل نویز و آکوستیک صنعتی.', equip:'شیکر الکترودینامیک، اتاق نیمه‌صامت، آنالایزر سیگنال' },
+  { id:'l6', name:'آزمایشگاه ترمودینامیک و انتقال حرارت', field:'ترمودینامیک', desc:'مطالعه تجربی سیستم‌های حرارتی، مبدل‌های گرمایی، نانوسیالات و مدیریت حرارت.', equip:'تونل حرارتی، حسگرهای مادون قرمز، حمام دمای ثابت' }
 ];
 
-const FACULTY=[
-  {n:'Prof. Ali Ahmadi',i:'AA',t:'Professor — Fluid Mechanics',c:'fluids',d:'Leading expert in turbulent flow modeling and CFD-based design optimization for industrial aerodynamics and internal flows.',tags:['CFD','Turbulence Modeling','Aerodynamics','Flow Control']},
-  {n:'Prof. Fatemeh Hosseini',i:'FH',t:'Associate Professor — Heat Transfer',c:'fluids',d:'Research in enhanced heat transfer surfaces, phase-change cooling, and thermal management for power electronics.',tags:['Heat Exchangers','Phase Change','Thermal Management','Nanofluids']},
-  {n:'Prof. Hossein Mohammadi',i:'HM',t:'Professor — Combustion & Energy',c:'fluids',d:'Combustion instability, alternative fuel combustion, and high-efficiency industrial burner design for power generation.',tags:['Combustion','Alternative Fuels','IC Engines','Energy Systems']},
-  {n:'Prof. Sara Karimi',i:'SK',t:'Associate Professor — Robotics',c:'robotics',d:'Adaptive robotic manipulation, human-robot collaboration, and autonomous systems for unstructured industrial environments.',tags:['Robotics','Autonomous Systems','HRI','Machine Learning']},
-  {n:'Prof. Reza Tehrani',i:'RT',t:'Professor — Control Engineering',c:'robotics',d:'Control system design for complex multi-body systems, vehicle dynamics, and precision manufacturing equipment.',tags:['Control Systems','Vehicle Dynamics','Mechatronics','Precision Control']},
-  {n:'Prof. Amir Shahriari',i:'AS',t:'Associate Professor — Mechatronics',c:'robotics',d:'Intelligent mechatronic systems for industrial automation, smart manufacturing, and embedded control applications.',tags:['Mechatronics','Industrial Automation','Smart Mfg.','IoT']},
-  {n:'Prof. Mohammad Rezaei',i:'MR',t:'Professor — Materials Science',c:'materials',d:'Metallic alloy development, failure analysis and fractography, and surface engineering for high-temperature and corrosive environments.',tags:['Alloy Development','Failure Analysis','Surface Engineering','Fatigue']},
-  {n:'Prof. Maryam Sadeghi',i:'MS',t:'Associate Professor — Composites',c:'materials',d:'Fiber-reinforced polymer composites for aerospace and lightweight structural applications, including damage tolerance and manufacturing optimization.',tags:['CFRP / GFRP','Aerospace Materials','Damage Tolerance','Process Optimization']},
-  {n:'Prof. Kaveh Nasseri',i:'KN',t:'Professor — Manufacturing Eng.',c:'materials',d:'Advanced machining processes, precision micro-manufacturing, and additive manufacturing process development for industrial applications.',tags:['CNC Machining','Metal Additive Mfg.','Process Optimization','Quality Control']},
-  {n:'Prof. Leila Nazari',i:'LN',t:'Professor — Structural Analysis',c:'structures',d:'Structural integrity assessment, finite element analysis, and reliability engineering for pressure vessels, pipelines, and critical infrastructure.',tags:['FEA / FEM','Structural Integrity','Reliability Eng.','Fracture Mechanics']},
-  {n:'Prof. Babak Moradi',i:'BM',t:'Associate Professor — Design Eng.',c:'structures',d:'Topology optimization, design for manufacturing, and multi-objective structural optimization for lightweight, high-performance components.',tags:['Topology Optimization','Design for Mfg.','Lightweight Design','Multi-obj. Optimization']},
-  {n:'Prof. Neda Rahmani',i:'NR',t:'Associate Professor — Dynamics',c:'structures',d:'Vibration analysis, rotating machinery condition monitoring, and active noise and vibration control systems for industrial plants.',tags:['Vibration Control','Rotating Machinery','NVH','Modal Analysis']}
+const DEFAULT_FACULTY = [
+  { id:'f1', name:'دکتر علی محمدی', title:'استاد تمام', field:'مکانیک سیالات', skills:'CFD, توربولانس, آیرودینامیک', desc:'متخصص دینامیک محاسباتی سیالات با بیش از ۸۰ مقاله در مجلات معتبر بین‌المللی.' },
+  { id:'f2', name:'دکتر مریم احمدی', title:'دانشیار', field:'رباتیک و اتوماسیون', skills:'رباتیک نرم, کنترل, حسگرها', desc:'پژوهشگر حوزه رباتیک نرم و سیستم‌های الهام‌گرفته از طبیعت. همکاری با صنایع خودروسازی.' },
+  { id:'f3', name:'دکتر حسن رضایی', title:'استاد', field:'مواد و ساخت', skills:'کامپوزیت‌ها, تولید افزودنی, متالورژی', desc:'بنیان‌گذار آزمایشگاه مواد پیشرفته. تمرکز بر مواد سبک برای صنایع هوافضا.' },
+  { id:'f4', name:'دکتر زهرا کریمی', title:'استادیار', field:'احتراق و انرژی', skills:'سوخت پاک, آلایندگی, انرژی تجدیدپذیر', desc:'پژوهش در زمینه سوخت‌های جایگزین و کاهش آلایندگی موتورهای احتراق داخلی.' },
+  { id:'f5', name:'دکتر امیر حسینی', title:'دانشیار', field:'تحلیل سازه', skills:'FEA, ارتعاشات, بهینه‌سازی', desc:'متخصص تحلیل المان محدود و بهینه‌سازی سازه‌های مکانیکی. مشاور صنایع نفت و گاز.' },
+  { id:'f6', name:'دکتر سارا ناصری', title:'استاد', field:'ترمودینامیک', skills:'انتقال حرارت, نانوسیالات, مبدل حرارتی', desc:'پژوهشگر برجسته در زمینه انتقال حرارت پیشرفته و سیستم‌های مدیریت حرارتی.' }
 ];
 
-// ═══ NAVIGATION ═══
-function go(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('pg-'+id).classList.add('active');
-  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-  const nl=document.getElementById('nl-'+id);if(nl)nl.classList.add('active');
-  window.scrollTo(0,0);
-  if(id==='home')countUp();
-  if(id==='labs')renderLabs('all');
-  if(id==='faculty')renderFaculty('all');
+function loadDefaultLabs() {
+  // ادغام هوشمند: اگر آیتمی با همین id وجود داشت جایگزین نمی‌شود
+  const existing = getStore(STORAGE_LABS);
+  const existingIds = new Set(existing.map(l => l.id));
+  const merged = [...existing, ...DEFAULT_LABS.filter(l => !existingIds.has(l.id))];
+  setStore(STORAGE_LABS, merged);
+  renderAdminLists();
+  showToast('✅ داده‌های پیش‌فرض آزمایشگاه‌ها بارگذاری شد.');
 }
 
-// ═══ LABS ═══
-function renderLabs(filter){
-  const data=filter==='all'?LABS:LABS.filter(l=>l.t===filter);
-  document.getElementById('labs-grid').innerHTML=data.map(l=>`
-    <div class="card">
-      <span class="card-tag">${l.t==='industrial'?'Industrial':'Educational'}</span>
-      <h3 class="card-h">${l.n}</h3>
-      <p class="card-d">${l.d}</p>
-      <ul class="card-list">${l.eq.map(e=>`<li>${e}</li>`).join('')}</ul>
-    </div>`).join('');
-}
-function fLabs(f,btn){
-  document.querySelectorAll('#pg-labs .ftab').forEach(t=>t.classList.remove('on'));
-  btn.classList.add('on');renderLabs(f);
+function loadDefaultFaculty() {
+  const existing = getStore(STORAGE_FACULTY);
+  const existingIds = new Set(existing.map(f => f.id));
+  const merged = [...existing, ...DEFAULT_FACULTY.filter(f => !existingIds.has(f.id))];
+  setStore(STORAGE_FACULTY, merged);
+  renderAdminLists();
+  showToast('✅ داده‌های پیش‌فرض هیئت علمی بارگذاری شد.');
 }
 
-// ═══ FACULTY ═══
-function renderFaculty(filter){
-  const data=filter==='all'?FACULTY:FACULTY.filter(f=>f.c===filter);
-  document.getElementById('faculty-grid').innerHTML=data.map(p=>`
-    <div class="prof-card">
-      <div class="prof-av">${p.i}</div>
-      <h3 class="prof-n">${p.n}</h3>
-      <p class="prof-t">${p.t}</p>
-      <p class="prof-d">${p.d}</p>
-      <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-    </div>`).join('');
-}
-function fFaculty(f,btn){
-  document.querySelectorAll('#pg-faculty .ftab').forEach(t=>t.classList.remove('on'));
-  btn.classList.add('on');renderFaculty(f);
+// ──────────────────────────────────────
+// ۳. مدیریت آزمایشگاه‌ها
+// ──────────────────────────────────────
+function renderLabsPage() {
+  const labs = getStore(STORAGE_LABS);
+  if (labs.length === 0) {
+    // بارگذاری خودکار داده‌های پیش‌فرض در اولین بازدید
+    setStore(STORAGE_LABS, DEFAULT_LABS);
+    labs.push(...DEFAULT_LABS);
+  }
+
+  const fields = [...new Set(labs.map(l => l.field))];
+
+  // Filter bar
+  let fb = '<button class="ftab on" onclick="filterLabs(\'all\',this)">همه</button>';
+  fields.forEach(f => {
+    fb += `<button class="ftab" onclick="filterLabs('${f.replace(/'/g, "\\'")}',this)">${f}</button>`;
+  });
+  _('labs-filter-bar').innerHTML = fb;
+
+  const grid = _('labs-grid');
+  grid.innerHTML = labs.map(l => {
+    const equips = l.equip ? l.equip.split(',').map(e => e.trim()) : [];
+    return `
+      <div class="card" data-field="${l.field}">
+        <span class="card-tag">${l.field}</span>
+        <h3 class="card-h">${l.name}</h3>
+        <p class="card-d">${l.desc || ''}</p>
+        ${equips.length ? `<ul class="card-list">${equips.map(e => `<li>${e}</li>`).join('')}</ul>` : ''}
+      </div>`;
+  }).join('');
 }
 
-// ═══ COUNTER ═══
-function countUp(){
-  document.querySelectorAll('[data-to]').forEach(el=>{
-    const target=+el.dataset.to,sfx=el.dataset.sfx||'';
-    let n=0;const step=Math.ceil(target/40);
-    const t=setInterval(()=>{n=Math.min(n+step,target);el.textContent=n+sfx;if(n>=target)clearInterval(t);},28);
+function filterLabs(field, btn) {
+  document.querySelectorAll('#labs-filter-bar .ftab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('#labs-grid .card').forEach(card => {
+    card.style.display = (field === 'all' || card.dataset.field === field) ? '' : 'none';
   });
 }
 
-// ═══ FORM ═══
-function sendForm(){document.getElementById('ok').style.display='block';}
-
-// ═══ GEAR GENERATOR ═══
-function gear(teeth,rO,rI,offset=0){
-  const pts=[],a=2*Math.PI/teeth;
-  for(let i=0;i<teeth;i++){
-    const b=i*a+offset;
-    pts.push(
-      `L${rI*Math.cos(b).toFixed(2)},${rI*Math.sin(b).toFixed(2)}`,
-      `L${rO*Math.cos(b+a*.16).toFixed(2)},${rO*Math.sin(b+a*.16).toFixed(2)}`,
-      `L${rO*Math.cos(b+a*.43).toFixed(2)},${rO*Math.sin(b+a*.43).toFixed(2)}`,
-      `L${rI*Math.cos(b+a*.59).toFixed(2)},${rI*Math.sin(b+a*.59).toFixed(2)}`
-    );
+// ──────────────────────────────────────
+// ۴. مدیریت هیئت علمی
+// ──────────────────────────────────────
+function renderFacultyPage() {
+  const faculty = getStore(STORAGE_FACULTY);
+  if (faculty.length === 0) {
+    setStore(STORAGE_FACULTY, DEFAULT_FACULTY);
+    faculty.push(...DEFAULT_FACULTY);
   }
-  pts[0]=pts[0].replace('L','M');
-  return pts.join(' ')+'Z';
+
+  const fields = [...new Set(faculty.map(f => f.field))];
+
+  let fb = '<button class="ftab on" onclick="filterFaculty(\'all\',this)">همه</button>';
+  fields.forEach(f => {
+    fb += `<button class="ftab" onclick="filterFaculty('${f.replace(/'/g, "\\'")}',this)">${f}</button>`;
+  });
+  _('faculty-filter-bar').innerHTML = fb;
+
+  const grid = _('faculty-grid');
+  grid.innerHTML = faculty.map(f => {
+    const initials = f.name.split(' ').map(w => w[0]).join('').slice(0, 3);
+    const skills = f.skills ? f.skills.split(',').map(s => s.trim()) : [];
+    return `
+      <div class="prof-card" data-field="${f.field}">
+        <div class="prof-av">${initials}</div>
+        <h3 class="prof-n">${f.name}</h3>
+        <p class="prof-t">${f.title || ''}</p>
+        <p class="prof-d">${f.desc || ''}</p>
+        <div class="tags">${skills.map(s => `<span class="tag">${s}</span>`).join('')}</div>
+      </div>`;
+  }).join('');
 }
 
-// Set gear paths
-document.getElementById('glp').setAttribute('d',gear(18,148,120));
-document.getElementById('gmp').setAttribute('d',gear(10,60,48));
-document.getElementById('gsp').setAttribute('d',gear(7,37,29));
-document.getElementById('gtp').setAttribute('d',gear(6,25,20));
+function filterFaculty(field, btn) {
+  document.querySelectorAll('#faculty-filter-bar .ftab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('#faculty-grid .prof-card').forEach(card => {
+    card.style.display = (field === 'all' || card.dataset.field === field) ? '' : 'none';
+  });
+}
 
-// Animate gears — ratios by tooth count
-let ang=0;
-(function spin(){
-  ang+=.0025;
-  const r2d=180/Math.PI;
-  document.getElementById('gl').setAttribute('transform',`translate(275,360) rotate(${ang*r2d})`);
-  document.getElementById('gm').setAttribute('transform',`translate(455,195) rotate(${-ang*(18/10)*r2d})`);
-  document.getElementById('gs').setAttribute('transform',`translate(95,520) rotate(${ang*(18/7)*r2d})`);
-  document.getElementById('gt').setAttribute('transform',`translate(95,175) rotate(${-ang*(18/6)*r2d})`);
-  requestAnimationFrame(spin);
+// ──────────────────────────────────────
+// ۵. پنل ادمین — مدیریت آزمایشگاه‌ها
+// ──────────────────────────────────────
+function renderAdminLists() {
+  renderAdminLabsList();
+  renderAdminFacultyList();
+}
+
+function renderAdminLabsList() {
+  const labs = getStore(STORAGE_LABS);
+  const list = _('admin-labs-list');
+  if (labs.length === 0) {
+    list.innerHTML = '<p style="color:var(--muted);font-size:.85rem;">هنوز آزمایشگاهی ثبت نشده است. از فرم بالا برای افزودن استفاده کنید.</p>';
+    return;
+  }
+  list.innerHTML = labs.map(l => `
+    <div class="admin-item">
+      <div class="admin-item-info">
+        <strong>${l.name}</strong> <span class="badge">${l.field}</span>
+        <small>${l.desc || ''}</small>
+      </div>
+      <div class="admin-item-actions">
+        <button class="btn btn-s btn-sm" onclick="editLab('${l.id}')">✏️</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteLab('${l.id}')">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function saveLab(e) {
+  e.preventDefault();
+  const id = _('lab-edit-id').value;
+  const lab = {
+    id: id || 'l' + Date.now(),
+    name: _('lab-name').value.trim(),
+    field: _('lab-field').value.trim(),
+    desc: _('lab-desc').value.trim(),
+    equip: _('lab-equip').value.trim()
+  };
+  let labs = getStore(STORAGE_LABS);
+  if (id) {
+    labs = labs.map(l => l.id === id ? lab : l);
+    showToast('✅ آزمایشگاه به‌روزرسانی شد.');
+  } else {
+    labs.push(lab);
+    showToast('✅ آزمایشگاه جدید افزوده شد.');
+  }
+  setStore(STORAGE_LABS, labs);
+  resetLabForm();
+  renderAdminLists();
+}
+
+function editLab(id) {
+  const labs = getStore(STORAGE_LABS);
+  const lab = labs.find(l => l.id === id);
+  if (!lab) return;
+  _('lab-edit-id').value = lab.id;
+  _('lab-name').value = lab.name;
+  _('lab-field').value = lab.field;
+  _('lab-desc').value = lab.desc || '';
+  _('lab-equip').value = lab.equip || '';
+  _('lab-form-title').textContent = 'ویرایش آزمایشگاه';
+  _('lab-submit-btn').textContent = 'به‌روزرسانی آزمایشگاه';
+  _('lab-cancel-btn').style.display = '';
+  document.getElementById('admin-lab-form-section').scrollIntoView({ behavior:'smooth' });
+}
+
+function deleteLab(id) {
+  if (!confirm('آیا از حذف این آزمایشگاه اطمینان دارید؟ این عملیات برگشت‌ناپذیر است.')) return;
+  let labs = getStore(STORAGE_LABS).filter(l => l.id !== id);
+  setStore(STORAGE_LABS, labs);
+  renderAdminLists();
+  showToast('🗑 آزمایشگاه حذف شد.');
+}
+
+function cancelLabEdit() {
+  resetLabForm();
+}
+
+function resetLabForm() {
+  _('lab-edit-id').value = '';
+  _('lab-name').value = '';
+  _('lab-field').value = '';
+  _('lab-desc').value = '';
+  _('lab-equip').value = '';
+  _('lab-form-title').textContent = 'افزودن آزمایشگاه جدید';
+  _('lab-submit-btn').textContent = 'ذخیره آزمایشگاه';
+  _('lab-cancel-btn').style.display = 'none';
+}
+
+// ──────────────────────────────────────
+// ۶. پنل ادمین — مدیریت هیئت علمی
+// ──────────────────────────────────────
+function renderAdminFacultyList() {
+  const faculty = getStore(STORAGE_FACULTY);
+  const list = _('admin-faculty-list');
+  if (faculty.length === 0) {
+    list.innerHTML = '<p style="color:var(--muted);font-size:.85rem;">هنوز عضوی ثبت نشده است. از فرم بالا برای افزودن استفاده کنید.</p>';
+    return;
+  }
+  list.innerHTML = faculty.map(f => `
+    <div class="admin-item">
+      <div class="admin-item-info">
+        <strong>${f.name}</strong> <span class="badge">${f.field}</span>
+        <small>${f.title || ''} — ${f.desc || ''}</small>
+      </div>
+      <div class="admin-item-actions">
+        <button class="btn btn-s btn-sm" onclick="editFaculty('${f.id}')">✏️</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteFaculty('${f.id}')">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function saveFaculty(e) {
+  e.preventDefault();
+  const id = _('fac-edit-id').value;
+  const fac = {
+    id: id || 'f' + Date.now(),
+    name: _('fac-name').value.trim(),
+    title: _('fac-title').value.trim(),
+    field: _('fac-field').value.trim(),
+    skills: _('fac-skills').value.trim(),
+    desc: _('fac-desc').value.trim()
+  };
+  let faculty = getStore(STORAGE_FACULTY);
+  if (id) {
+    faculty = faculty.map(f => f.id === id ? fac : f);
+    showToast('✅ عضو هیئت علمی به‌روزرسانی شد.');
+  } else {
+    faculty.push(fac);
+    showToast('✅ عضو هیئت علمی جدید افزوده شد.');
+  }
+  setStore(STORAGE_FACULTY, faculty);
+  resetFacultyForm();
+  renderAdminLists();
+}
+
+function editFaculty(id) {
+  const faculty = getStore(STORAGE_FACULTY);
+  const fac = faculty.find(f => f.id === id);
+  if (!fac) return;
+  _('fac-edit-id').value = fac.id;
+  _('fac-name').value = fac.name;
+  _('fac-title').value = fac.title || '';
+  _('fac-field').value = fac.field;
+  _('fac-skills').value = fac.skills || '';
+  _('fac-desc').value = fac.desc || '';
+  _('faculty-form-title').textContent = 'ویرایش عضو هیئت علمی';
+  _('fac-submit-btn').textContent = 'به‌روزرسانی عضو هیئت علمی';
+  _('fac-cancel-btn').style.display = '';
+  document.getElementById('admin-lab-form-section').scrollIntoView({ behavior:'smooth' });
+}
+
+function deleteFaculty(id) {
+  if (!confirm('آیا از حذف این عضو هیئت علمی اطمینان دارید؟ این عملیات برگشت‌ناپذیر است.')) return;
+  let faculty = getStore(STORAGE_FACULTY).filter(f => f.id !== id);
+  setStore(STORAGE_FACULTY, faculty);
+  renderAdminLists();
+  showToast('🗑 عضو هیئت علمی حذف شد.');
+}
+
+function cancelFacultyEdit() {
+  resetFacultyForm();
+}
+
+function resetFacultyForm() {
+  _('fac-edit-id').value = '';
+  _('fac-name').value = '';
+  _('fac-title').value = '';
+  _('fac-field').value = '';
+  _('fac-skills').value = '';
+  _('fac-desc').value = '';
+  _('faculty-form-title').textContent = 'افزودن عضو هیئت علمی جدید';
+  _('fac-submit-btn').textContent = 'ذخیره عضو هیئت علمی';
+  _('fac-cancel-btn').style.display = 'none';
+}
+
+// ──────────────────────────────────────
+// ۷. فرم همکاری — ارسال و نمایش خروجی
+// ──────────────────────────────────────
+function handleFormSubmit(e) {
+  e.preventDefault();
+
+  const data = {
+    name: _('cf-name').value.trim(),
+    company: _('cf-company').value.trim() || '—',
+    email: _('cf-email').value.trim(),
+    type: _('cf-type').value || '—',
+    field: _('cf-field').value || '—',
+    desc: _('cf-desc').value.trim(),
+    date: new Date().toLocaleString('fa-IR')
+  };
+
+  // ذخیره در localStorage برای مرور بعدی
+  const requests = getStore(STORAGE_REQUESTS);
+  requests.push(data);
+  setStore(STORAGE_REQUESTS, requests);
+
+  // نمایش Modal با خلاصه اطلاعات
+  showModal(data);
+
+  // پاک کردن فرم
+  _('collab-form').reset();
+}
+
+function showModal(data) {
+  const overlay = _('modal-overlay');
+  const content = _('modal-content');
+  content.innerHTML = `
+    <h3>✅ درخواست با موفقیت ثبت شد</h3>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:1rem;">طی ۲ روز کاری با شما تماس خواهیم گرفت.</p>
+    <div class="modal-row"><span>نام:</span><span>${data.name}</span></div>
+    <div class="modal-row"><span>شرکت / سازمان:</span><span>${data.company}</span></div>
+    <div class="modal-row"><span>ایمیل:</span><span>${data.email}</span></div>
+    <div class="modal-row"><span>نوع همکاری:</span><span>${data.type}</span></div>
+    <div class="modal-row"><span>حوزه تخصصی:</span><span>${data.field}</span></div>
+    <div class="modal-row"><span>تاریخ ثبت:</span><span>${data.date}</span></div>
+    <div style="margin-top:1rem; padding:.8rem; background:var(--bg3); border-radius:var(--radius); font-size:.85rem; color:var(--muted);">
+      <strong>شرح پروژه:</strong><br>${data.desc}
+    </div>
+    <button class="btn btn-p" onclick="closeModal()">متوجه شدم</button>
+  `;
+  overlay.classList.add('active');
+}
+
+function closeModal(e) {
+  // اگر از overlay کلیک شده باشد (event target خود overlay است)
+  if (e && e.target !== _('modal-overlay')) return;
+  _('modal-overlay').classList.remove('active');
+}
+
+// ──────────────────────────────────────
+// ۸. موبایل — Toggle منو
+// ──────────────────────────────────────
+function toggleMobileNav() {
+  const links = _('nav-links');
+  const cta = document.querySelector('.nav-cta');
+  if (links.style.display === 'flex') {
+    links.style.display = '';
+    if (cta) cta.style.display = '';
+  } else {
+    links.style.display = 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '100%';
+    links.style.right = '0';
+    links.style.width = '100%';
+    links.style.backgroundColor = 'rgba(13,13,15,.98)';
+    links.style.padding = '1rem';
+    links.style.borderBottom = '1px solid #28282D';
+    if (cta) cta.style.display = 'none';
+  }
+}
+
+// ──────────────────────────────────────
+// ۹. مقداردهی اولیه
+// ──────────────────────────────────────
+(function init() {
+  // بارگذاری داده‌های پیش‌فرض اگر localStorage خالی باشد
+  if (getStore(STORAGE_LABS).length === 0) setStore(STORAGE_LABS, DEFAULT_LABS);
+  if (getStore(STORAGE_FACULTY).length === 0) setStore(STORAGE_FACULTY, DEFAULT_FACULTY);
+
+  // رندر صفحه اولیه
+  renderLabsPage();
+  renderFacultyPage();
+  renderAdminLists();
+
+  console.log('🎓 پنل مدیریت محتوای دانشکده مهندسی مکانیک شریف — آماده');
+  console.log('📋 داده‌ها در localStorage مرورگر شما ذخیره می‌شوند.');
+  console.log('📬 درخواست‌های همکاری ثبت‌شده:', getStore(STORAGE_REQUESTS));
 })();
-
-// ═══ INIT ═══
-renderLabs('all');
-renderFaculty('all');
-countUp();
 </script>
+
 </body>
 </html>
